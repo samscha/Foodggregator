@@ -1,3 +1,4 @@
+/* general */
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -137,4 +138,14 @@ body {
   min-width: 400px;
   min-height: 500px;
   background: #d0ecfd;
+}
+/* app */
+.App {
+  width: 100%;
+}
+/* header */
+.Header {
+  margin: 7px auto;
+  font-size: 2rem;
+  text-align: center;
 }
