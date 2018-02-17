@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import { fetchResults } from '../../actions';
 
 class Search extends Component {
   state = {
@@ -8,6 +11,10 @@ class Search extends Component {
 
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
+  };
+
+  searchButtonClickedHandler = _ => {
+    this.props.fetchResults(this.state);
   };
 
   render() {
@@ -35,10 +42,18 @@ class Search extends Component {
 
         <div className="SearchSeparator" />
 
-        <div className="SearchButton">&#8629;</div>
+        <div className="SearchButton" onClick={this.searchButtonClickedHandler}>
+          &#8629;
+        </div>
       </div>
     );
   }
 }
 
-export default Search;
+const mapStateToProps = state => {
+  return {
+    //
+  };
+};
+
+export default connect(mapStateToProps, { fetchResults })(Search);

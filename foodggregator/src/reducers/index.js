@@ -2,14 +2,15 @@ import * as actionType from '../actions';
 
 const initialState = {
   results: [],
+  isFetchingResults: false,
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionType.FETCH_RESULTS_START:
-      console.log('start results');
       return {
         ...state,
+        isFetchingResults: true,
       };
 
     default:
