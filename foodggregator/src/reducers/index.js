@@ -3,6 +3,7 @@ import * as actionType from '../actions';
 const initialState = {
   results: [],
   isFetchingResults: false,
+  error: '',
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -11,6 +12,24 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         isFetchingResults: true,
+      };
+
+    case actionType.FETCH_RESULTS_SUCCESS:
+      return {
+        ...state,
+        results: action.payload,
+      };
+
+    case actionType.FETCH_RESULTS_ERROR:
+      return {
+        ...state,
+        error: action.payload,
+      };
+
+    case actionType.FETCH_RESULTS_FINISH:
+      return {
+        ...state,
+        isFetchingResults: false,
       };
 
     default:
