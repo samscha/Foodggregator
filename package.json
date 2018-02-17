@@ -1,0 +1,19 @@
+{
+  "name": "foodggregator",
+  "version": "1.0.0",
+  "description": "A food aggregator app.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samscha/Foodggregator.git"
+  },
+  "author": "Samuel Cha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samscha/Foodggregator/issues"
+  },
+  "homepage": "https://github.com/samscha/Foodggregator#readme"
+}
