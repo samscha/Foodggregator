@@ -4,7 +4,8 @@
   "description": "A food aggregator app.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/samscha/Foodggregator/issues"
   },
-  "homepage": "https://github.com/samscha/Foodggregator#readme"
+  "homepage": "https://github.com/samscha/Foodggregator#readme",
+  "dependencies": {
+    "nodemon": "^1.15.0"
+  }
 }
