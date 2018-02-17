@@ -1,0 +1,42 @@
+#buttonCreator() {
+  .medium() {
+    width: 40%;
+    height: 35px;
+    max-width: 400px;
+
+    background: @themeColor;
+    color: white;
+    border: solid 1px @themeColor;
+
+    font-size: 1.35rem;
+    text-decoration: none;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &:hover {
+      border-color: #1d771d;
+      background: #1d771d;
+      color: white;
+
+      cursor: pointer;
+    }
+  }
+}
+
+.emptySpace() {
+  height: 7px;
+}
+
+.inputBox() {
+  width: 70%;
+  max-width: 700px;
+
+  padding-left: 4px;
+
+  font-size: 1.35rem;
+
+  outline: none;
+}

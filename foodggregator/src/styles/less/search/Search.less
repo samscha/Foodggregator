@@ -1,3 +1,26 @@
 .Search {
-  font-size: 1.2rem;
+  width: 100%;
+
+  // font-size: 1.2rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .SearchSeparator {
+    .emptySpace();
+  }
+
+  .SearchQuery {
+    .inputBox();
+  }
+
+  .SearchLocation {
+    .inputBox();
+  }
+
+  .SearchButton {
+    #buttonCreator > .medium;
+    padding-top: 5px;
+  }
 }

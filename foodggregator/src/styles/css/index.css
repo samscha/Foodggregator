@@ -135,21 +135,65 @@ body {
   padding: 0;
   font-family: sans-serif;
   font-size: 62.5%;
-  min-width: 400px;
+  min-width: 350px;
   min-height: 500px;
-  background: #d0ecfd;
 }
 /* app */
 .App {
   width: 100%;
 }
+.Separator {
+  height: 24px;
+}
 /* header */
 .Header {
-  margin: 7px auto;
-  font-size: 2rem;
+  margin: 12px auto;
+  font-size: 2.75rem;
+  color: #ff875a;
   text-align: center;
 }
 /* search */
 .Search {
-  font-size: 1.2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.Search .SearchSeparator {
+  height: 7px;
+}
+.Search .SearchQuery {
+  width: 70%;
+  max-width: 700px;
+  padding-left: 4px;
+  font-size: 1.35rem;
+  outline: none;
+}
+.Search .SearchLocation {
+  width: 70%;
+  max-width: 700px;
+  padding-left: 4px;
+  font-size: 1.35rem;
+  outline: none;
+}
+.Search .SearchButton {
+  width: 40%;
+  height: 35px;
+  max-width: 400px;
+  background: #ff875a;
+  color: white;
+  border: solid 1px #ff875a;
+  font-size: 1.35rem;
+  text-decoration: none;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 5px;
+}
+.Search .SearchButton:hover {
+  border-color: #1d771d;
+  background: #1d771d;
+  color: white;
+  cursor: pointer;
 }

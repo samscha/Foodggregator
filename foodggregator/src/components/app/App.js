@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Header from '../header/Header';
+import Separator from './Separator';
 import Search from '../search/Search';
 
 class App extends Component {
@@ -8,6 +9,8 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
+
+        <Separator />
 
         <Search />
       </div>
