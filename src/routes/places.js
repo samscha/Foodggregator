@@ -34,6 +34,50 @@ const fetchAPIWithOptions = (URL, options) => {
   });
 };
 
+const combine = data => {
+  // list = [ { restaurant_name: [ {Google Places data}, {Yelp data} ] }]
+  // list = [        key       :                 value                . ]
+  // const list = [];
+  const list = {};
+
+  data.forEach(dataAPI => {
+    dataAPI.forEach(restaurantAPI => {
+      list[restaurantAPI.name]
+        ? (list[restaurantAPI.name] = list[restaurantAPI.name].concat(
+            restaurantAPI,
+          ))
+        : (list[restaurantAPI.name] = [].concat(restaurantAPI));
+
+      // if (list.filter(restaurantList => restaurantList.name !== restaurantAPI.name)
+      //   .length > 0) {
+      //     const restaurants = Object.values(list.filter(
+      //       restaurantList => restaurantList.name !== restaurantAPI.name,
+      //     )[0]).push(restaurantAPI)
+
+      //   }
+
+      //   ? list[
+      //       list.indexOf(
+      //         list.filter(
+      //           restaurantList => restaurantList.name !== restaurantAPI.name,
+      //         )[0],
+      //       )
+      //     ].push(restaurantAPI)
+      //   : list.push({ [restaurantAPI.name]: [restaurantAPI] });
+    });
+    // list.filter(restaurant => restaurant.name !== dataAPI.name).length > 0
+    //   ? list[
+    //       list.indexOf(
+    //         list.filter(restaurant => restaurant.name !== dataAPI.name),
+    //       )
+    //     ].push(dataAPI)
+    //   : list.push({ [dataAPI.name]: [dataAPI] });
+    // list.push({ [dataAPI.name]: [dataAPI] });
+  });
+
+  return list;
+};
+
 router.post('/', (req, res) => {
   const { query, location } = req.body;
 
@@ -45,15 +89,21 @@ router.post('/', (req, res) => {
   };
 
   Promise.all([
-    cache[URL] ? resolve(cache[URL]) : fetchAPI(gPlacesURL),
-    cache[URL]
-      ? resolve(cache[URL])
+    cache[gPlacesURL]
+      ? Promise.resolve(cache[gPlacesURL])
+      : fetchAPI(gPlacesURL),
+    cache[yelpURL]
+      ? Promise.resolve(cache[yelpURL])
       : fetchAPIWithOptions(yelpURL, yelpOptions),
   ]).then(values => {
     const gMapsData = values[0].results;
-    const yelpData = values[1];
-    console.log(yelpData);
-    res.status(status.OK).send(gMapsData);
+    const yelpData = values[1].businesses;
+
+    const combinedData = combine([gMapsData, yelpData]);
+    console.log(combinedData);
+
+    // console.log(yelpData);
+    res.status(status.OK).send(combinedData);
   });
 });
 
