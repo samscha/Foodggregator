@@ -1,6 +1,7 @@
 const express = require('express');
 const fetch = require('node-fetch');
 const config = require('../../config.js');
+const cache = require('../cache');
 
 const router = express.Router();
 
@@ -27,7 +28,8 @@ const fetchAPIWithOptions = (URL, options) => {
   return new Promise((resolve, reject) => {
     fetch(URL, options)
       .then(res => res.json())
-      .then(data => resolve(data))
+      .then(data => (cache[URL] = data))
+      .then(_ => resolve(cache[URL]))
       .catch(err => reject(err));
   });
 };
@@ -43,13 +45,15 @@ router.post('/', (req, res) => {
   };
 
   Promise.all([
-    fetchAPI(gPlacesURL),
-    fetchAPIWithOptions(yelpURL, yelpOptions),
+    cache[URL] ? resolve(cache[URL]) : fetchAPI(gPlacesURL),
+    cache[URL]
+      ? resolve(cache[URL])
+      : fetchAPIWithOptions(yelpURL, yelpOptions),
   ]).then(values => {
-    const gMapsData = values[0];
+    const gMapsData = values[0].results;
     const yelpData = values[1];
     console.log(yelpData);
-    res.status(status.OK).send(yelpData);
+    res.status(status.OK).send(gMapsData);
   });
 });
 
