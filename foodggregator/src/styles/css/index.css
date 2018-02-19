@@ -147,12 +147,14 @@ body {
 }
 .Line {
   width: 95%;
+  max-width: 900px;
   margin: 0 auto;
   border: solid 0.5px #ff875a;
 }
 /* header */
 .Header {
-  margin: 12px auto;
+  margin: 0 auto;
+  margin-top: 20px;
   font-size: 2.75rem;
   color: #ff875a;
   text-decoration: none;
@@ -192,7 +194,7 @@ body {
 .Search .SearchIsNotFetchingResults .SearchButton {
   width: 40%;
   height: 35px;
-  max-width: 400px;
+  max-width: 250px;
   background: #ff875a;
   color: white;
   border: solid 1px #ff875a;
@@ -215,7 +217,7 @@ body {
   width: 95%;
   margin: 0 auto;
 }
-.Results .ResultsQuery {
+.Results .ResultsSearch {
   font-size: 1.45rem;
   color: #ff875a;
   border-bottom: solid 1px;

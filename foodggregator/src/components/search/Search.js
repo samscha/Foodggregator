@@ -59,7 +59,6 @@ class Search extends Component {
                     background: 'white',
                     color: 'black',
                     opacity: '0.2',
-                    fontSize: '0.7rem',
                     cursor: 'not-allowed',
                   }
                 : null

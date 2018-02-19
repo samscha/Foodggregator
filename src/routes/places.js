@@ -57,7 +57,11 @@ const combine = (gMapsData, yelpData) => {
     //   [gMapsPlacesData.formatted_address]: [{ 'Google Places': gMapsPlacesData }],
     // });
     list.push({
-      [gMapsPlacesData.name]: [{ 'Google Places': gMapsPlacesData }],
+      [gMapsPlacesData.name]: [
+        {
+          'Google Places': gMapsPlacesData,
+        },
+      ],
     });
   });
 
@@ -86,7 +90,11 @@ const combine = (gMapsData, yelpData) => {
       listRestaurant[Object.keys(listRestaurant)[0]].push({ Yelp: yelpData });
     } else {
       list.push({
-        [yelpData.name]: [{ Yelp: yelpData }],
+        [yelpData.name]: [
+          {
+            Yelp: yelpData,
+          },
+        ],
       });
     }
 

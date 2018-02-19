@@ -34,7 +34,7 @@ class Results extends Component {
 
         <Separator />
 
-        <div className="ResultsQuery">
+        <div className="ResultsSearch">
           {Object.keys(this.state.search).length === 0
             ? null
             : `${this.state.search.query} | ${this.state.search.location}`}
