@@ -17,6 +17,8 @@ class Search extends Component {
     this.props.fetchResults(this.state);
   };
 
+  checkIfReturn = e => (e.keyCode === 13 ? this.props.fetchResults : null);
+
   render() {
     return (
       <div className="Search">
@@ -27,6 +29,7 @@ class Search extends Component {
           value={this.state.query}
           placeholder="Find..."
           onChange={this.handleInputChange}
+          onKeyUp={this.checkIfReturn}
         />
 
         <div className="SearchSeparator" />
@@ -38,6 +41,7 @@ class Search extends Component {
           value={this.state.location}
           placeholder="In..."
           onChange={this.handleInputChange}
+          onKeyUp={this.checkIfReturn}
         />
 
         <div className="SearchSeparator" />

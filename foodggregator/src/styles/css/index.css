@@ -197,3 +197,7 @@ body {
   color: white;
   cursor: pointer;
 }
+/* results */
+.Results .Result {
+  font-size: 1.4rem;
+}

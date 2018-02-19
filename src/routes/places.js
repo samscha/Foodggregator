@@ -90,7 +90,7 @@ const combine = (gMapsData, yelpData) => {
       });
     }
 
-    console.log(list);
+    // console.log(list);
   });
 
   // data.forEach(dataFromAPI => {
@@ -190,7 +190,7 @@ router.post('/', (req, res) => {
     const yelpData = values[1].businesses;
 
     const combinedData = combine(gMapsData, yelpData);
-    console.log(combinedData);
+    // console.log(combinedData);
 
     // console.log(yelpData);
     res.status(status.OK).send(combinedData);

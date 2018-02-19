@@ -16,11 +16,11 @@ export const fetchResults = search => {
     fetchResultsAPICall
       .then(({ data }) => {
         dispatch({ type: FETCH_RESULTS_SUCCESS, payload: data });
+        dispatch({ type: FETCH_RESULTS_FINISH });
       })
       .catch(err => {
         dispatch({ type: FETCH_RESULTS_ERROR, payload: err });
+        dispatch({ type: FETCH_RESULTS_FINISH });
       });
-
-    dispatch({ type: FETCH_RESULTS_FINISH });
   };
 };
