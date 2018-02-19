@@ -1,26 +1,32 @@
 .Search {
   width: 100%;
 
-  // font-size: 1.2rem;
+  .SearchIsNotFetchingResults {
+    width: 100%;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-  .SearchSeparator {
-    .emptySpace();
-  }
+    .SearchSeparator {
+      .emptySpace();
+    }
 
-  .SearchQuery {
-    .inputBox();
-  }
+    .SearchQuery {
+      .inputBox();
 
-  .SearchLocation {
-    .inputBox();
-  }
+      border: 1px solid @themeColor;
+    }
 
-  .SearchButton {
-    #buttonCreator > .medium;
-    padding-top: 5px;
+    .SearchLocation {
+      .inputBox();
+
+      border: 1px solid @themeColor;
+    }
+
+    .SearchButton {
+      #buttonCreator > .medium;
+      padding-top: 5px;
+    }
   }
 }

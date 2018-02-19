@@ -21,34 +21,53 @@ class Search extends Component {
     e.keyCode === 13 ? this.props.fetchResults(this.state) : null;
 
   render() {
+    console.log(this.props);
     return (
       <div className="Search">
-        <input
-          className="SearchQuery"
-          type="text"
-          name="query"
-          value={this.state.query}
-          placeholder="Find..."
-          onChange={this.handleInputChange}
-          onKeyUp={this.checkIfReturn}
-        />
+        <div className="SearchIsNotFetchingResults">
+          <input
+            className="SearchQuery"
+            type="text"
+            name="query"
+            value={this.state.query}
+            placeholder="Find..."
+            onChange={this.handleInputChange}
+            onKeyUp={this.checkIfReturn}
+            disabled={this.props.isFetchingResults}
+          />
 
-        <div className="SearchSeparator" />
+          <div className="SearchSeparator" />
 
-        <input
-          className="SearchLocation"
-          type="text"
-          name="location"
-          value={this.state.location}
-          placeholder="In..."
-          onChange={this.handleInputChange}
-          onKeyUp={this.checkIfReturn}
-        />
+          <input
+            className="SearchLocation"
+            type="text"
+            name="location"
+            value={this.state.location}
+            placeholder="In..."
+            onChange={this.handleInputChange}
+            onKeyUp={this.checkIfReturn}
+            disabled={this.props.isFetchingResults}
+          />
 
-        <div className="SearchSeparator" />
+          <div className="SearchSeparator" />
 
-        <div className="SearchButton" onClick={this.searchButtonClickedHandler}>
-          &#8629;
+          <div
+            className="SearchButton"
+            onClick={this.searchButtonClickedHandler}
+            style={
+              this.props.isFetchingResults
+                ? {
+                    background: 'white',
+                    color: 'black',
+                    opacity: '0.2',
+                    fontSize: '0.7rem',
+                    cursor: 'not-allowed',
+                  }
+                : null
+            }
+          >
+            &#8629;
+          </div>
         </div>
       </div>
     );
@@ -57,7 +76,7 @@ class Search extends Component {
 
 const mapStateToProps = state => {
   return {
-    //
+    isFetchingResults: state.isFetchingResults,
   };
 };
 

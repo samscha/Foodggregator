@@ -155,28 +155,33 @@ body {
 /* search */
 .Search {
   width: 100%;
+}
+.Search .SearchIsNotFetchingResults {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.Search .SearchSeparator {
+.Search .SearchIsNotFetchingResults .SearchSeparator {
   height: 7px;
 }
-.Search .SearchQuery {
+.Search .SearchIsNotFetchingResults .SearchQuery {
   width: 70%;
   max-width: 700px;
   padding-left: 4px;
   font-size: 1.35rem;
   outline: none;
+  border: 1px solid #ff875a;
 }
-.Search .SearchLocation {
+.Search .SearchIsNotFetchingResults .SearchLocation {
   width: 70%;
   max-width: 700px;
   padding-left: 4px;
   font-size: 1.35rem;
   outline: none;
+  border: 1px solid #ff875a;
 }
-.Search .SearchButton {
+.Search .SearchIsNotFetchingResults .SearchButton {
   width: 40%;
   height: 35px;
   max-width: 400px;
@@ -191,7 +196,7 @@ body {
   justify-content: center;
   padding-top: 5px;
 }
-.Search .SearchButton:hover {
+.Search .SearchIsNotFetchingResults .SearchButton:hover {
   border-color: #1d771d;
   background: #1d771d;
   color: white;

@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import Header from '../header/Header';
 import Separator from './Separator';
 import Search from '../search/Search';
-import Results from '../results/Results';
 
 class App extends Component {
   state = {};
@@ -23,8 +22,6 @@ class App extends Component {
         <Search />
 
         <Separator />
-
-        <Results />
       </div>
     );
   }
@@ -32,7 +29,7 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    isFetchingResults: state.isFetchingResults,
+    //
   };
 };
 
