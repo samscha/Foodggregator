@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import Header from '../header/Header';
+import Line from './Line';
 import Separator from './Separator';
 import Search from '../search/Search';
 
@@ -18,10 +20,16 @@ class App extends Component {
         <Header />
 
         <Separator />
+        <Line />
+        <Separator />
 
         <Search />
 
         <Separator />
+
+        {this.props.results.length > 0 && this.props.error === '' ? (
+          <Redirect to="/results" />
+        ) : null}
       </div>
     );
   }
@@ -29,7 +37,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    //
+    results: state.results,
+    error: state.error,
   };
 };
 

@@ -21,7 +21,6 @@ class Search extends Component {
     e.keyCode === 13 ? this.props.fetchResults(this.state) : null;
 
   render() {
-    console.log(this.props);
     return (
       <div className="Search">
         <div className="SearchIsNotFetchingResults">

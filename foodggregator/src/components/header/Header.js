@@ -1,10 +1,11 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Header = _ => {
   return (
-    <div>
-      <div className="Header">Foodggregator</div>
-    </div>
+    <NavLink to="/" className="Header">
+      Foodggregator
+    </NavLink>
   );
 };
 
