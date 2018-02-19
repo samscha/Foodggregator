@@ -40,14 +40,9 @@ const addGPlacesDetails = URL => {
 
 const combine = (gMapsData, yelpData) => {
   // list = [
-  //          { address_1: [ {Google Places: data}, {Yelp: data} ] },
-  //          { address_2: [ {              ...                } ] },
+  //          { name_1: [ {Google Places: data}, {Yelp: data} ] },
+  //          { name_2: [ {              ...                } ] },
   //        ]
-
-  // tmpList = {
-  //             address_1: [ { API_1: data }, { API_2: data } ],
-  //             address_2: [               ...                ],
-  //           }
 
   // notes:
   //       address formatted as:
@@ -57,31 +52,45 @@ const combine = (gMapsData, yelpData) => {
   const list = [];
   // const tmpList = {};
 
-  gMapsData.forEach(placeData => {
+  gMapsData.forEach(gMapsPlacesData => {
+    // list.push({
+    //   [gMapsPlacesData.formatted_address]: [{ 'Google Places': gMapsPlacesData }],
+    // });
     list.push({
-      [placeData.formatted_address]: [{ 'Google Places': placeData }],
+      [gMapsPlacesData.name]: [{ 'Google Places': gMapsPlacesData }],
     });
-    // tmpList[gMapsData.formatted_address] = gMapsData
   });
 
-  yelpData.forEach(placeData => {
+  yelpData.forEach(yelpData => {
     let address =
-      placeData.location.display_address.join(', ') +
-      `, ${placeData.location.country}A`;
+      yelpData.location.display_address.join(', ') +
+      `, ${yelpData.location.country}A`;
 
+    // const listRestaurant = list.find(
+    //   restaurant => Object.keys(restaurant)[0] === address,
+    // );
     const listRestaurant = list.find(
-      restaurant => Object.keys(restaurant)[0] === address,
+      restaurant =>
+        Object.keys(Object.values(restaurant)[0][0])[0] === 'Google Places'
+          ? Object.values(restaurant)[0][0]['Google Places']
+              .formatted_address === address ||
+            Object.values(restaurant)[0][0]['Google Places'].name.includes(
+              yelpData.name,
+            )
+          : false,
     );
 
     // console.log(listRestaurant);
 
     if (listRestaurant !== undefined) {
-      listRestaurant[address].push({ Yelp: placeData });
+      listRestaurant[Object.keys(listRestaurant)[0]].push({ Yelp: yelpData });
     } else {
       list.push({
-        [address]: [{ Yelp: placeData }],
+        [yelpData.name]: [{ Yelp: yelpData }],
       });
     }
+
+    console.log(list);
   });
 
   // data.forEach(dataFromAPI => {
