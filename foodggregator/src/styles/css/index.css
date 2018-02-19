@@ -198,6 +198,21 @@ body {
   cursor: pointer;
 }
 /* results */
-.Results .Result {
-  font-size: 1.4rem;
+.Results {
+  width: 95%;
+  margin: 0 auto;
+}
+.Results .ResultsQuery {
+  font-size: 1.45rem;
+  color: #ff875a;
+  border-bottom: solid 1px;
+}
+.Results .ResultsSeparator {
+  height: 7px;
+}
+.Results .ResultsContainer {
+  margin: 2px auto;
+}
+.Result {
+  font-size: 1.35rem;
 }

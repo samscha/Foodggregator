@@ -11,7 +11,7 @@ const yelpAPI = config.APIs.yelp;
 
 const gPlacesTextSearchURL = `${gPlacesAPI.URL.textsearch}/${
   gPlacesAPI.output
-}?key=${gPlacesAPI.key}`;
+}?key=${gPlacesAPI.key}&type=restaurant`;
 
 const yelpSearchURL = `${yelpAPI.URL.search}`;
 

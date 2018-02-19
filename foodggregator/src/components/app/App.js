@@ -10,7 +10,7 @@ class App extends Component {
   state = {};
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
+    // console.log(nextProps);
   }
 
   render() {
@@ -20,7 +20,7 @@ class App extends Component {
 
         <Separator />
 
-        {this.props.isFetchingResults ? <div>loading</div> : <Search />}
+        <Search />
 
         <Separator />
 

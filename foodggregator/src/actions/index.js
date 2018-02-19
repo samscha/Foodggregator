@@ -11,7 +11,7 @@ export const fetchResults = search => {
   const fetchResultsAPICall = axios.post(`${SERVER_ADDRESS}/places`, search);
 
   return dispatch => {
-    dispatch({ type: FETCH_RESULTS_START });
+    dispatch({ type: FETCH_RESULTS_START, payload: search });
 
     fetchResultsAPICall
       .then(({ data }) => {

@@ -17,7 +17,8 @@ class Search extends Component {
     this.props.fetchResults(this.state);
   };
 
-  checkIfReturn = e => (e.keyCode === 13 ? this.props.fetchResults : null);
+  checkIfReturn = e =>
+    e.keyCode === 13 ? this.props.fetchResults(this.state) : null;
 
   render() {
     return (

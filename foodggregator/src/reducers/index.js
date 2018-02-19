@@ -1,6 +1,7 @@
 import * as actionType from '../actions';
 
 const initialState = {
+  search: {},
   results: [],
   isFetchingResults: false,
   error: '',
@@ -11,6 +12,7 @@ const rootReducer = (state = initialState, action) => {
     case actionType.FETCH_RESULTS_START:
       return {
         ...state,
+        search: action.payload,
         isFetchingResults: true,
       };
 
