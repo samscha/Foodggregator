@@ -172,6 +172,8 @@ const combine = (gMapsData, yelpData) => {
   // list.push({ [dataAPI.name]: [dataAPI] });
   // });
 
+  // console.log(list);
+
   return list;
 };
 

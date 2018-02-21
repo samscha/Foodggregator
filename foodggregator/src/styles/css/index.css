@@ -218,7 +218,7 @@ body {
   margin: 0 auto;
 }
 .Results .ResultsSearch {
-  font-size: 1.45rem;
+  font-size: 1.95rem;
   color: #ff875a;
   border-bottom: solid 1px;
 }
@@ -229,5 +229,14 @@ body {
   margin: 2px auto;
 }
 .Result {
-  font-size: 1.35rem;
+  margin: 7px 0;
+}
+.Result .ResultName {
+  margin: 0 7px 0 0;
+  font-size: 1.6rem;
+  display: inline;
+}
+.Result .ResultAddress {
+  font-size: 1.05rem;
+  display: inline;
 }
