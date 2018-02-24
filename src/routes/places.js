@@ -1,7 +1,11 @@
 const express = require('express');
-const fetch = require('node-fetch');
 const config = require('../../config.js');
 const cache = require('../cache');
+const {
+  fetchAPI,
+  fetchAPIWith,
+  addAPI,
+} = require('../controllers/placesControllers');
 
 const router = express.Router();
 
@@ -15,26 +19,26 @@ const gPlacesTextSearchURL = `${gPlacesAPI.URL.textsearch}/${
 
 const yelpSearchURL = `${yelpAPI.URL.search}`;
 
-const fetchAPI = URL => {
-  return new Promise((resolve, reject) => {
-    fetch(URL)
-      .then(res => res.json())
-      .then(data => resolve(data))
-      .catch(err => reject(err));
-  });
-};
+// const fetchAPI = URL => {
+//   return new Promise((resolve, reject) => {
+//     fetch(URL)
+//       .then(res => res.json())
+//       .then(data => resolve(data))
+//       .catch(err => reject(err));
+//   });
+// };
 
-const fetchAPIWithOptions = (URL, options) => {
-  return new Promise((resolve, reject) => {
-    fetch(URL, options)
-      .then(res => res.json())
-      .then(data => (cache[URL] = data))
-      .then(_ => resolve(cache[URL]))
-      .catch(err => reject(err));
-  });
-};
+// const fetchAPIWithOptions = (URL, options) => {
+//   return new Promise((resolve, reject) => {
+//     fetch(URL, options)
+//       .then(res => res.json())
+//       .then(data => (cache[URL] = data))
+//       .then(_ => resolve(cache[URL]))
+//       .catch(err => reject(err));
+//   });
+// };
 
-const addGPlacesDetails = URL => {
+const gPlacesDetailsHelper = URL => {
   const results = cache[URL];
 };
 
@@ -187,17 +191,56 @@ router.post('/', (req, res) => {
     headers: { Authorization: `Bearer ${yelpAPI.key}` },
   };
 
+  /* fordebugging */
+  // fetchAPIWith(yelpURL, yelpOptions)
+  //   .then(data => res.json(data))
+  //   .catch(_ => {});
+  // return;
+
+  const debug = true;
+
+  if (debug) {
+    const gresults = require('../../example-data/googleplaces');
+    const yelpres = require('../../example-data/yelp');
+
+    cache[gPlacesURL] = gresults;
+    cache[yelpURL] = yelpres;
+
+    Promise.all([
+      cache[gPlacesURL]
+        ? Promise.resolve(cache[gPlacesURL])
+        : console.log('err adding to cache'),
+      // addGPlacesDetails(gPlacesURL),
+      // gPlacesDetailsHelper(gPlacesURL),
+      cache[yelpURL]
+        ? Promise.resolve(cache[yelpURL])
+        : console.log('err adding to cache'),
+    ]).then(values => {
+      const gMapsData = values[0].results;
+      const yelpData = values[1].businesses;
+
+      const combinedData = combine(gMapsData, yelpData);
+      // console.log(combinedData);
+
+      // console.log(yelpData);
+      res.status(status.OK).send(combinedData);
+      return;
+    });
+    return;
+  }
+
   Promise.all([
     cache[gPlacesURL]
       ? Promise.resolve(cache[gPlacesURL])
       : fetchAPI(gPlacesURL),
     // addGPlacesDetails(gPlacesURL),
+    gPlacesDetailsHelper(gPlacesURL),
     cache[yelpURL]
       ? Promise.resolve(cache[yelpURL])
-      : fetchAPIWithOptions(yelpURL, yelpOptions),
+      : fetchAPIWith(yelpURL, yelpOptions),
   ]).then(values => {
     const gMapsData = values[0].results;
-    const yelpData = values[1].businesses;
+    const yelpData = values[2].businesses;
 
     const combinedData = combine(gMapsData, yelpData);
     // console.log(combinedData);
