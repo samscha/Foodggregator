@@ -1,42 +1,46 @@
 const fetch = require('node-fetch');
 const cache = require('../cache');
 
-const fetchAPI = URL => {
+const fetchAPI = Url => {
   return new Promise((resolve, reject) => {
-    fetch(URL)
+    fetch(Url)
       .then(res => res.json())
-      .then(data => resolve(data))
+      .then(data => (cache[Url] = data))
+      .then(_ => resolve(cache[Url]))
       .catch(err => reject(err));
   });
 };
 
-const fetchAPIWith = (URL, options) => {
+const fetchAPIWith = (Url, options) => {
   return new Promise((resolve, reject) => {
-    fetch(URL, options)
+    fetch(Url, options)
       .then(res => res.json())
-      .then(data => (cache[URL] = data))
-      .then(_ => resolve(cache[URL]))
+      .then(data => (cache[Url] = data))
+      .then(_ => resolve(cache[Url]))
       .catch(err => reject(err));
   });
 };
 
-const sterilize = (API, data, options = {}) => {
-  switch (API) {
-    case 'GooglePlaces':
-      const { URL } = options;
-      return data.results.map(placeData => {
-        const { place_id } = placeData;
-        const placeDetailsURL = `${URL}&placeid=${place_id}`;
+// const sterilize = (API, data, options = {}) => {
+//   switch (data) {
+//     case data.results: // googleplaces
+//       // const { Url } = options;
+//       return data.results
+//       // return data.results.map(placeData => {
+//       //   const { place_id } = placeData;
+//       //   const placeDetailsUrl = `${Url}&placeid=${place_id}`;
 
-        fetchAPI(placeDetailsURL)
-          .then(res => res.json())
-          .then(data => (cache[placeDetailsURL] = data))
-          .then(_ => {
-            return Object.assign(placeData, cache[placeDetailsURL].result);
-          })
-          .catch(err => console.log(err));
-      });
-  }
-};
+//       //   fetchAPI(placeDetailsUrl)
+//       //     .then(res => res.json())
+//       //     .then(data => (cache[placeDetailsUrl] = data))
+//       //     .then(_ => {
+//       //       return Object.assign(placeData, cache[placeDetailsUrl].result);
+//       //     })
+//       //     .catch(err => console.log(err));
+//       // });
+//       case data.businesses: // yelp
+//         return data.businesses
+//   }
+// };
 
-module.exports = { fetchAPI, fetchAPIWith, sterilize };
+module.exports = { fetchAPI, fetchAPIWith };
