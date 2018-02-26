@@ -2,7 +2,11 @@ const express = require('express');
 const config = require('../../config.js');
 const cache = require('../cache');
 
-const { fetchAPI, fetchAPIWith } = require('../controllers/placesControllers');
+const {
+  fetchAPI,
+  fetchAPIWith,
+  createPlacesFrom,
+} = require('../controllers/placesControllers');
 
 const {
   getGoogleplacesTextsearchUrl,
@@ -38,7 +42,15 @@ router.get('/', (req, res) => {
         Promise.all(createYelpPlacesFrom(values[1])),
       ])
         .then(values => {
-          res.status(OK).json({ g: values[0], y: values[1] });
+          res.json(values);
+          return;
+
+          // Promise.all(createPlacesFrom(values))
+          //   .then(values => {
+          //     console.log('results for route', values);
+          //     res.status(OK).json(values);
+          //   })
+          //   .catch(err => res.status(SERVER_ERROR).json(err));
         })
         .catch(err => res.status(SERVER_ERROR).json(err));
     })

@@ -16,7 +16,7 @@ const PlaceSchema = new mongoose.Schema({
     index: true,
   },
   intlPhone: {
-    type: Number,
+    type: String,
     index: true,
   },
   googleplace: {
