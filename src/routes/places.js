@@ -184,71 +184,48 @@ const { OK, USER_ERROR, SERVER_ERROR } = config.status;
 //   return list;
 // };
 
-router.post('/', (req, res) => {
-  const { query, location } = req.body;
+// router.post('/', (req, res) => {
+//   const { query, location } = req.body;
 
-  // const googleplacesUrl = `${googleplacesTextsearchURL}&query=${query}+${location}`;
+//   const googleplacesUrl = getGoogleplacesTextsearchUrl(query, location);
+//   const { yelpUrl, yelpOptions } = getYelpBusinessesSearchUrl(query, location);
+
+//   Promise.all([
+//     cache[googleplacesUrl]
+//       ? Promise.resolve(cache[googleplacesUrl])
+//       : fetchAPI(googleplacesUrl),
+//     cache[yelpUrl]
+//       ? Promise.resolve(cache[yelpUrl])
+//       : fetchAPIWith(yelpUrl, yelpOptions),
+//   ])
+//     .then(values => {
+//       Promise.all([
+//         Promise.all(createGoogleplacePlacesFrom(values[0])),
+//         Promise.all(createYelpPlacesFrom(values[1])),
+//       ])
+//         .then(values => {
+//           res.status(OK).json({ g: values[0], y: values[1] });
+//         })
+//         .catch(err => res.status(SERVER_ERROR).json(err));
+//     })
+//     .catch(err => res.status(SERVER_ERROR).json(err));
+// });
+
+router.get('/', (req, res) => {
+  const { query, location } = req.query;
+
   const googleplacesUrl = getGoogleplacesTextsearchUrl(query, location);
   const { yelpUrl, yelpOptions } = getYelpBusinessesSearchUrl(query, location);
-
-  // const {
-  //   yelpUrl,
-  //   options,
-  // } = `${yelpSearchURL}?term=${query}&location=${location}`;
-  // const yelpOptions = {
-  //   headers: { Authorization: `Bearer ${yelpAPI.key}` },
-  // };
-
-  /* fordebugging */
-  // fetchAPIWith(yelpUrl, yelpOptions)
-  //   .then(data => res.json(data))
-  //   .catch(_ => {});
-  // return;
-
-  // const debug = false;
-
-  // if (debug) {
-  //   const gresults = require('../../example-data/googleplaces');
-  //   const yelpres = require('../../example-data/yelp');
-
-  //   cache[googleplacesUrl] = gresults;
-  //   cache[yelpUrl] = yelpres;
-
-  //   Promise.all([
-  //     cache[googleplacesUrl]
-  //       ? Promise.resolve(cache[googleplacesUrl])
-  //       : console.log('err adding to cache'),
-  //     // addGPlacesDetails(googleplacesUrl),
-  //     // gPlacesDetailsHelper(googleplacesUrl),
-  //     cache[yelpUrl]
-  //       ? Promise.resolve(cache[yelpUrl])
-  //       : console.log('err adding to cache'),
-  //   ]).then(values => {
-  //     const gMapsData = values[0].results;
-  //     const yelpData = values[1].businesses;
-
-  //     const combinedData = combine(gMapsData, yelpData);
-  //     // console.log(combinedData);
-
-  //     // console.log(yelpData);
-  //     res.status(OK).send(combinedData);
-  //     return;
-  //   });
-  //   return;
-  // }
 
   Promise.all([
     cache[googleplacesUrl]
       ? Promise.resolve(cache[googleplacesUrl])
       : fetchAPI(googleplacesUrl),
-    // addGPlacesDetails(googleplacesUrl),
-    // gPlacesDetailsHelper(googleplacesUrl),
     cache[yelpUrl]
       ? Promise.resolve(cache[yelpUrl])
       : fetchAPIWith(yelpUrl, yelpOptions),
   ])
     .then(values => {
-      // console.log('values from route promise all');
       Promise.all([
         Promise.all(createGoogleplacePlacesFrom(values[0])),
         Promise.all(createYelpPlacesFrom(values[1])),
@@ -257,27 +234,6 @@ router.post('/', (req, res) => {
           res.status(OK).json({ g: values[0], y: values[1] });
         })
         .catch(err => res.status(SERVER_ERROR).json(err));
-      //  }).catch
-
-      //   const gResults =
-      //   const yResults = Promise.all(createYelpPlacesFrom(values[1]))
-
-      //     .then(values => res.status(OK).json({ g: values[0], y: values[1] }))
-      //     .catch(err => res.status(SERVER_ERROR).json(err));
-      // const dataSterilized = values.map(data => {
-      //   return sterilize(data)
-      // });
-
-      // const gMapsData = values[0].results;
-      // const yelpData = values[1].businesses;
-
-      // const combinedData = combine(gMapsData, yelpData);
-      // console.log(combinedData);
-
-      // console.log(yelpData);
-      // res.status(OK).json({ gp: googleplaceResults, y: yelpResults });
-      // })
-      // .catch(err => res.status(SERVER_ERROR).json(err));
     })
     .catch(err => res.status(SERVER_ERROR).json(err));
 });
