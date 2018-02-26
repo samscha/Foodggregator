@@ -35,8 +35,8 @@ const createGoogleplacePlacesFrom = data => {
                             )
                           : '',
                         location: {
-                          lat: place.geometry.lat,
-                          lng: place.geometry.lng,
+                          lat: place.geometry.location.lat,
+                          lng: place.geometry.location.lng,
                         },
                         rating: place.rating,
                         id: place.id,

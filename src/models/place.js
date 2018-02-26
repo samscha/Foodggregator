@@ -5,8 +5,8 @@ const Yelp = require('./yelp');
 const { ObjectId } = mongoose.Schema.Types;
 
 const PlaceSchema = new mongoose.Schema({
-  intlPhone: {
-    type: Number,
+  name: {
+    type: String,
     required: true,
     index: true,
   },
@@ -15,9 +15,9 @@ const PlaceSchema = new mongoose.Schema({
     required: true,
     index: true,
   },
-  name: {
-    type: String,
-    required: true,
+  intlPhone: {
+    type: Number,
+    index: true,
   },
   googleplace: {
     type: ObjectId,
