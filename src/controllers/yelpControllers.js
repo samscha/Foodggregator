@@ -1,6 +1,6 @@
 const Yelp = require('../models/yelp');
 
-const { APIs } = require('../../config.js');
+const { APIs } = require('../../config');
 const { urls, key } = APIs.yelp;
 
 const getYelpBusinessesSearchUrl = (query, location) => {
@@ -16,7 +16,7 @@ const createYelpPlacesFrom = data => {
       Yelp.find({ id: place.id })
         .then(results => {
           results.length > 0
-            ? resolve(results)
+            ? resolve(results[0])
             : resolve(
                 new Promise((resolve, reject) => {
                   Yelp({

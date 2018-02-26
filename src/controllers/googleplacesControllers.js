@@ -20,7 +20,7 @@ const createGoogleplacePlacesFrom = data => {
       Googleplace.find({ id: place.id })
         .then(results => {
           results.length > 0
-            ? resolve(results)
+            ? resolve(results[0])
             : resolve(
                 new Promise((resolve, reject) => {
                   fetchAPI(getGooglePlacesDetailsUrl(place.place_id))
