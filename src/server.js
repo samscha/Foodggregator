@@ -4,12 +4,14 @@ const bodyParser = require('body-parser');
 const config = require('../config.js');
 const cors = require('cors');
 
+const { user, pass, authSource } = config.mongodAuth;
+
 const places = require('./routes/places');
 
 const port = config.port;
 
 // mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/places');
+mongoose.connect('mongodb://localhost/places', { user, pass, authSource });
 
 const server = express();
 server.use(cors());
