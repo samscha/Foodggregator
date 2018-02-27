@@ -30,30 +30,32 @@ const createPlacesFrom = data => {
 };
 
 const createPlacesFor = (data, APiName) => {
-  console.log('apiname', APiName);
-  return data.map(placeArr => {
-    const place = placeArr[0];
-    console.log(typeof place._id);
+  return data.map(place => {
+    // const place = placeArr[0];
+    // console.log(typeof place._id);
     // console.log(place);
 
     return new Promise((resolve, reject) => {
-      Place.find()
-        .or([
-          { name: place.name },
-          { intlPhone: place.intlPhone },
-          { address: place.address },
-        ])
+      Place.find({
+        // { name: place.name },
+        intlPhone: place.intlPhone,
+        // { address: place.address },
+      })
+        // .or([
+        //   { name: { $e: place.name } },
+        //   { intlPhone: { $e: place.intlPhone } },
+        //   { address: { $e: place.address } },
+        // ])
         .then(results => {
           // console.log('results', results);
+          console.log('results', results);
 
           if (results.length === 1)
             Place.update(
               { _id: results[0]._id },
               {
-                name: results[0].name,
-                address: results[0].address,
-                intlPhone: results[0].intlPhone,
-                APiName: place._id,
+                ...results[0],
+                [APiName]: place._id,
               },
             )
               .then(updatedPlace =>
@@ -73,7 +75,7 @@ const createPlacesFor = (data, APiName) => {
               name: place.name,
               address: place.address,
               intlPhone: place.intlPhone,
-              APiName: place.id,
+              [APiName]: place._id,
             })
               .save()
               .then(savedPlace => resolve(savedPlace._id))
@@ -87,4 +89,14 @@ const createPlacesFor = (data, APiName) => {
   });
 };
 
-module.exports = { fetchAPI, fetchAPIWith, createPlacesFrom };
+const findPlacesWith = ids => {
+  return new Promise((resolve, reject) => {
+    Place.find()
+      .where('_id')
+      .in(ids)
+      .then(places => resolve(places))
+      .catch(err => reject(err));
+  });
+};
+
+module.exports = { fetchAPI, fetchAPIWith, createPlacesFrom, findPlacesWith };

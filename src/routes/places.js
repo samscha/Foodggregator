@@ -2,10 +2,13 @@ const express = require('express');
 const config = require('../../config.js');
 const cache = require('../cache');
 
+const { OK, USER_ERROR, SERVER_ERROR } = config.status;
+
 const {
   fetchAPI,
   fetchAPIWith,
   createPlacesFrom,
+  findPlacesWith,
 } = require('../controllers/placesControllers');
 
 const {
@@ -19,8 +22,6 @@ const {
 } = require('../controllers/yelpControllers');
 
 const router = express.Router();
-
-const { OK, USER_ERROR, SERVER_ERROR } = config.status;
 
 router.get('/', (req, res) => {
   const { query, location } = req.query;
@@ -42,15 +43,20 @@ router.get('/', (req, res) => {
         Promise.all(createYelpPlacesFrom(values[1])),
       ])
         .then(values => {
-          res.json(values);
-          return;
+          // res.json(values);
+          // return;
 
-          // Promise.all(createPlacesFrom(values))
-          //   .then(values => {
-          //     console.log('results for route', values);
-          //     res.status(OK).json(values);
-          //   })
-          //   .catch(err => res.status(SERVER_ERROR).json(err));
+          // createPlacesFrom(values);
+
+          Promise.all(createPlacesFrom(values))
+            .then(values => {
+              findPlacesWith(values[0].concat(values[1]))
+                .then(value => res.status(OK).json(value))
+                .catch(err => res.status(SERVER_ERROR).json(err));
+              // console.log('results for route', values);
+              // res.status(OK).json(findPlacesWith(values[0].concat(values[1])));
+            })
+            .catch(err => res.status(SERVER_ERROR).json(err));
         })
         .catch(err => res.status(SERVER_ERROR).json(err));
     })
