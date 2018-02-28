@@ -11,9 +11,7 @@ const SERVER_ADDRESS = 'http://localhost:3030';
 
 export const fetchResults = search => {
   const fetchResultsAPICall = axios.get(
-    `${SERVER_ADDRESS}/places?query=${search.query}&location=${
-      search.location
-    }`,
+    `${SERVER_ADDRESS}/places?query=${search.query.toLowerCase()}&location=${search.location.toLowerCase()}`,
   );
 
   return dispatch => {

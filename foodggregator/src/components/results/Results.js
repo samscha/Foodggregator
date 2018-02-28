@@ -45,7 +45,7 @@ class Results extends Component {
 
         {this.state.results.map(place => {
           return (
-            <div className="ResultsContainer" key={place.name + place.address}>
+            <div className="ResultsContainer" key={place._id}>
               <Result place={place} />
             </div>
           );
