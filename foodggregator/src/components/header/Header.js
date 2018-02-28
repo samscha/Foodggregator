@@ -1,12 +1,25 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-const Header = _ => {
-  return (
-    <NavLink to="/" className="Header">
-      Foodggregator
-    </NavLink>
-  );
+import { headerClicked } from '../../actions';
+
+class Header extends Component {
+  headerClickedHandler = _ => {
+    this.props.headerClicked();
+  };
+
+  render() {
+    return (
+      <NavLink to="/" className="Header" onClick={this.headerClickedHandler}>
+        Foodggregator
+      </NavLink>
+    );
+  }
+}
+
+const mapStateToProps = state => {
+  return {};
 };
 
-export default Header;
+export default connect(mapStateToProps, { headerClicked })(Header);

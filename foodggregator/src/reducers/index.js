@@ -35,6 +35,12 @@ const rootReducer = (state = initialState, action) => {
         isFetchingResults: false,
       };
 
+    case actionType.RESET_RESULTS:
+      return {
+        ...state,
+        results: [],
+      };
+
     default:
       return {
         ...state,

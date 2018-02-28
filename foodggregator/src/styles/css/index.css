@@ -151,6 +151,27 @@ body {
   margin: 0 auto;
   border: solid 0.5px #ff875a;
 }
+/* buttons */
+.GoBackToHomeButton {
+  width: 40%;
+  height: 35px;
+  max-width: 250px;
+  background: #ff875a;
+  color: white;
+  border: solid 1px #ff875a;
+  font-size: 1.35rem;
+  text-decoration: none;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.GoBackToHomeButton:hover {
+  border-color: #1d771d;
+  background: #1d771d;
+  color: white;
+  cursor: pointer;
+}
 /* header */
 .Header {
   margin: 0 auto;
@@ -213,6 +234,15 @@ body {
   cursor: pointer;
 }
 /* results */
+.NoResults {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.NoResults .NoResultsText {
+  font-size: 1.6rem;
+}
 .Results {
   width: 95%;
   margin: 0 auto;

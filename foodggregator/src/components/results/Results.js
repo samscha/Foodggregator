@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Header from '../header/Header';
 import Separator from '../app/Separator';
 import Result from './Result';
+import NoResults from './NoResults';
 
 class Results extends Component {
   state = {
@@ -49,6 +50,10 @@ class Results extends Component {
             </div>
           );
         })}
+
+        <Separator />
+
+        {this.state.results.length === 0 ? <NoResults /> : null}
       </div>
     );
   }
