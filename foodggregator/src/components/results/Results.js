@@ -36,9 +36,24 @@ class Results extends Component {
         <Separator />
 
         <div className="ResultsSearch">
-          {Object.keys(this.state.search).length === 0
+          {/* {Object.keys(this.state.search).length === 0
             ? null
-            : `${this.state.search.query.toLowerCase()} | ${this.state.search.location.toLowerCase()}`}
+            :  */}
+          <div className="ResultsSearch__query">
+            {this.state.search.query
+              ? this.state.search.query.toLowerCase()
+              : null}
+          </div>
+
+          <div className="ResultsSearch__separator">
+            {this.state.search.query ? '|' : null}
+          </div>
+
+          <div className="ResultsSearch__location">
+            {this.state.search.location
+              ? this.state.search.location.toLowerCase()
+              : null}
+          </div>
         </div>
 
         <div className="ResultsSeparator" />

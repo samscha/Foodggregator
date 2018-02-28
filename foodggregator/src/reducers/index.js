@@ -9,6 +9,12 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionType.CLEAR_ERRORS:
+      return {
+        ...state,
+        error: '',
+      };
+
     case actionType.FETCH_RESULTS_START:
       return {
         ...state,

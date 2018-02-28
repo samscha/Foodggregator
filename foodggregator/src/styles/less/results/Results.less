@@ -4,10 +4,28 @@
   margin: 0 auto;
 
   .ResultsSearch {
-    font-size: @subTitleFontSize;
+    font-size: @textFontSize;
 
     color: @themeColor;
     border-bottom: solid 1px;
+
+    .flexCenter();
+    flex-direction: column;
+
+    @media @tablet {
+      .flexUncenter();
+      flex-direction: row;
+    }
+
+    .ResultsSearch__separator {
+      margin: 0 7px;
+
+      display: none;
+
+      @media @tablet {
+        display: flex;
+      }
+    }
   }
 
   .ResultsSeparator {
@@ -17,7 +35,7 @@
   .ResultsContainer {
     // width: 90%;
 
-    margin: 2px auto;
+    margin: 40px auto;
     // font-size: 1.4rem;
   }
 }

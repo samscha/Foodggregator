@@ -8,6 +8,13 @@
     flex-direction: column;
     align-items: center;
 
+    @media @laptop {
+      width: 85%;
+      margin: 0 auto;
+
+      flex-direction: row;
+    }
+
     .SearchSeparator {
       .emptySpace();
     }
@@ -16,12 +23,20 @@
       .inputBox();
 
       border: 1px solid @themeColor;
+
+      @media @laptop {
+        margin: 0 4px 0 0;
+      }
     }
 
     .SearchLocation {
       .inputBox();
 
       border: 1px solid @themeColor;
+
+      @media @laptop {
+        margin: 0 4px 0 0;
+      }
     }
 
     .SearchButton {

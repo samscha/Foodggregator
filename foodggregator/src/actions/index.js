@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+
 export const FETCH_RESULTS_START = 'FETCH_RESULTS_START';
 export const FETCH_RESULTS_SUCCESS = 'FETCH_RESULTS_SUCCESS';
 export const FETCH_RESULTS_ERROR = 'FETCH_RESULTS_ERROR';
@@ -17,6 +19,7 @@ export const fetchResults = search => {
 
   return dispatch => {
     dispatch({ type: FETCH_RESULTS_START, payload: search });
+    dispatch({ type: CLEAR_ERRORS });
 
     fetchResultsAPICall
       .then(({ data }) => {
