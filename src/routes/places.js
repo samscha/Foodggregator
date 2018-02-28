@@ -46,6 +46,8 @@ router.get('/', (req, res) => {
           // return; // res.json(values);
           // return;
 
+          // const results = comebineThese(values);
+
           // console.log('combined', comebineThese(values));
           res.json(comebineThese(values));
           return;

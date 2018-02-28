@@ -40,20 +40,43 @@ const comebineThese = values => {
 
   console.log('before', results.length);
 
-  console.log(results);
+  // console.log(results);
 
   values[1].forEach(place => {
     console.log(place);
-    const matchPhone = results.find(p => p.intlPhone === place.intlPhone);
-    const matchAddress = results.find(p =>
-      checkAddressesOf(p.address, place.address),
+    const matchPhoneIndex = results.findIndex(
+      p => p.intlPhone === place.intlPhone,
     );
 
-    if (matchPhone) {
-      matchPhone = { ...matchPhone, yelp: place };
-    } else if (matchAddress) {
-      matchAddress = { ...matchAddress, yelp: place };
+    console.log('matchphnoeindex', matchPhoneIndex);
+
+    const matchAddressIndex = results.findIndex(p =>
+      checkAddressesOf(p.address, place.address),
+    );
+    // const matchAddressIndex =
+    //   matchPhoneIndex === -1
+    //     ? results.findIndex(p => checkAddressesOf(p.address, place.address))
+    //     : -1;
+
+    console.log('match phone', matchPhoneIndex);
+    console.log('match add', matchAddressIndex);
+
+    console.log('before checks');
+
+    if (matchPhoneIndex !== -1) {
+      console.log('before match phone');
+      results[matchPhoneIndex] = { ...results[matchPhoneIndex], yelp: place };
+      // matchPhone = { ...matchPhone, yelp: place };
+      console.log('after match phone');
+      console.log(results);
+    } else if (matchAddressIndex !== -1) {
+      results[matchAddressIndex] = {
+        ...results[matchAddressIndex],
+        yelp: place,
+      };
+      // matchAddress = { ...matchAddress, yelp: place };
     } else {
+      console.log('else');
       results.push({
         name: place.name,
         address: place.address,
