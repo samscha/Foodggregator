@@ -8,6 +8,8 @@ const {
   fetchAPI,
   fetchAPIWith,
   comebineThese,
+  createPlacesFrom,
+  findPlacesWith,
 } = require('../controllers/placesControllers');
 
 const {
@@ -42,6 +44,8 @@ router.get('/', (req, res) => {
         Promise.all(createYelpPlacesFrom(values[1])),
       ])
         .then(values => {
+          const combinedPlaces = comebineThese(values);
+
           // res.json(values.reduce((s, e) => s.concat(e)));
           // return; // res.json(values);
           // return;
@@ -49,28 +53,29 @@ router.get('/', (req, res) => {
           // const results = comebineThese(values);
 
           // console.log('combined', comebineThese(values));
-          res.json(comebineThese(values));
-          return;
+          // res.json(comebineThese(values));
+          // return;
 
           // createPlacesFrom(values);
 
-          Promise.all(createPlacesFrom(values))
+          Promise.all(createPlacesFrom(combinedPlaces))
             .then(values => {
               // findPlacesWith(values[0].concat(values[1]))
-              console.log(values);
+              // console.log(values);
               // value =>
-              res
-                .status(OK)
-                .json(value)
+              findPlacesWith(values)
+                .then(value => res.status(OK).json(value))
                 .catch(err => res.status(SERVER_ERROR).json(err));
-              // console.log('results for route', values);
-              // res.status(OK).json(findPlacesWith(values[0].concat(values[1])));
             })
             .catch(err => res.status(SERVER_ERROR).json(err));
+          // console.log('results for route', values);
+          // res.status(OK).json(findPlacesWith(values[0].concat(values[1])));
         })
         .catch(err => res.status(SERVER_ERROR).json(err));
     })
     .catch(err => res.status(SERVER_ERROR).json(err));
+  // })
+  // .catch(err => res.status(SERVER_ERROR).json(err));
 });
 
 module.exports = router;

@@ -38,17 +38,17 @@ const comebineThese = values => {
     });
   });
 
-  console.log('before', results.length);
+  // console.log('before', results.length);
 
   // console.log(results);
 
   values[1].forEach(place => {
-    console.log(place);
+    // console.log(place);
     const matchPhoneIndex = results.findIndex(
       p => p.intlPhone === place.intlPhone,
     );
 
-    console.log('matchphnoeindex', matchPhoneIndex);
+    // console.log('matchphnoeindex', matchPhoneIndex);
 
     const matchAddressIndex = results.findIndex(p =>
       checkAddressesOf(p.address, place.address),
@@ -58,17 +58,17 @@ const comebineThese = values => {
     //     ? results.findIndex(p => checkAddressesOf(p.address, place.address))
     //     : -1;
 
-    console.log('match phone', matchPhoneIndex);
-    console.log('match add', matchAddressIndex);
+    // console.log('match phone', matchPhoneIndex);
+    // console.log('match add', matchAddressIndex);
 
-    console.log('before checks');
+    // console.log('before checks');
 
     if (matchPhoneIndex !== -1) {
-      console.log('before match phone');
+      // console.log('before match phone');
       results[matchPhoneIndex] = { ...results[matchPhoneIndex], yelp: place };
       // matchPhone = { ...matchPhone, yelp: place };
-      console.log('after match phone');
-      console.log(results);
+      // console.log('after match phone');
+      // console.log(results);
     } else if (matchAddressIndex !== -1) {
       results[matchAddressIndex] = {
         ...results[matchAddressIndex],
@@ -76,7 +76,7 @@ const comebineThese = values => {
       };
       // matchAddress = { ...matchAddress, yelp: place };
     } else {
-      console.log('else');
+      // console.log('else');
       results.push({
         name: place.name,
         address: place.address,
@@ -88,89 +88,88 @@ const comebineThese = values => {
 
   // results = combineData(values[1], result);
 
-  console.log('after', results.length);
+  // console.log('after', results.length);
   return results;
 };
 
-// const createPlacesFrom = data => {
-//   let results = [];
+const createPlacesFrom = data => {
+  // let results = [];
 
-//   data[0].forEach(place => {
-//     results.push({
-//       name: place.name,
-//       address: place.address,
-//       intlPhone: place.intlPhone,
-//       googleplace: place._id,
-//     });
-//   });
+  // data[0].forEach(place => {
+  //   results.push({
+  //     name: place.name,
+  //     address: place.address,
+  //     intlPhone: place.intlPhone,
+  //     googleplace: place._id,
+  //   });
+  // });
 
-//   results = combineData(data[1], results);
-//   return results;
+  // results = combineData(data[1], results);
+  // return results;
 
-//   return results.map(place => {
-//     return new Promise((resolve, reject) => {
-//       Place({
-//         name: place.name,
-//         address: place.address,
-//         intlPhone: place.intlPhone,
-//         googleplace: place.googleplace,
-//         yelp: place.yelp,
-//       })
-//         .save()
-//         .then(savedPlace => resolve(savedPlace))
-//         .catch(err => reject(err));
-//     });
-//   });
-
-//   // return data.map((API, i) => Promise.all(createPlacesFor(API, APIsIndex[i])));
-// };
-
-const combineData = (data, results) => {
-  console.log('results', results.length);
-
-  data.forEach(place => {
-    console.log(place.name);
-    const matchPhone = results.find(p => p.intlPhone === place.intlPhone);
-    const matchAddress = results.find(p =>
-      checkAddressesOf(p.address, place.address),
-    );
-
-    if (matchPhone) {
-      matchPhone = { ...matchPhone, yelp: place };
-    } else if (matchAddress) {
-      matchAddress = { ...matchAddress, yelp: place };
-    } else {
-      results.push({
+  return data.map(place => {
+    return new Promise((resolve, reject) => {
+      Place({
         name: place.name,
         address: place.address,
         intlPhone: place.intlPhone,
-        yelp: place,
-      });
-    }
-
-    // const matchAddress = results.find(p =>
-    //   checkAddressesOf(p.address, place.address),
-    // );
-
-    // if (matchAddress) {
-    //   matchAddress = { ...matchAddress, yelp: place };
-    // }
-
-    // results.push({
-    //   name: place.name,
-    //   address: place.address,
-    //   intlPhone: place.intlPhone,
-    //   yelp: place,
-    // })
+        googleplace: place.googleplace ? place.googleplace._id : null,
+        yelp: place.yelp ? place.yelp._id : null,
+      })
+        .save()
+        .then(savedPlace => resolve(savedPlace._id))
+        .catch(err => reject(err));
+    });
   });
-  console.log('results', results.length);
 
-  return results;
+  // return data.map((API, i) => Promise.all(createPlacesFor(API, APIsIndex[i])));
 };
+// const combineData = (data, results) => {
+//   console.log('results', results.length);
+
+//   data.forEach(place => {
+//     console.log(place.name);
+//     const matchPhone = results.find(p => p.intlPhone === place.intlPhone);
+//     const matchAddress = results.find(p =>
+//       checkAddressesOf(p.address, place.address),
+//     );
+
+//     if (matchPhone) {
+//       matchPhone = { ...matchPhone, yelp: place };
+//     } else if (matchAddress) {
+//       matchAddress = { ...matchAddress, yelp: place };
+//     } else {
+//       results.push({
+//         name: place.name,
+//         address: place.address,
+//         intlPhone: place.intlPhone,
+//         yelp: place,
+//       });
+//     }
+
+//     // const matchAddress = results.find(p =>
+//     //   checkAddressesOf(p.address, place.address),
+//     // );
+
+//     // if (matchAddress) {
+//     //   matchAddress = { ...matchAddress, yelp: place };
+//     // }
+
+//     // results.push({
+//     //   name: place.name,
+//     //   address: place.address,
+//     //   intlPhone: place.intlPhone,
+//     //   yelp: place,
+//     // })
+//   });
+//   console.log('results', results.length);
+
+//   return results;
+// };
 
 const checkAddressesOf = (place1, place2) => {
   // if (place1.length === 0 || place2.length === 0) return false;
-  console.log(`${place1} -- ${place2}`);
+  // console.log(`${place1} -- ${place2}`);
 
   const addr1 = place1.replace(',', '').split(/ /g);
   const addr2 = place2.replace(',', '').split(/ /g);
@@ -240,14 +239,21 @@ const createPlacesFor = data => {
   // });
 };
 
-// const findPlacesWith = ids => {
-//   return new Promise((resolve, reject) => {
-//     Place.find()
-//       .where('_id')
-//       .in(ids)
-//       .then(places => resolve(places))
-//       .catch(err => reject(err));
-//   });
-// };
+const findPlacesWith = ids => {
+  return new Promise((resolve, reject) => {
+    Place.find()
+      .where('_id')
+      .in(ids)
+      .populate('googleplace yelp')
+      .then(places => resolve(places))
+      .catch(err => reject(err));
+  });
+};
 
-module.exports = { fetchAPI, fetchAPIWith, comebineThese };
+module.exports = {
+  fetchAPI,
+  fetchAPIWith,
+  comebineThese,
+  createPlacesFrom,
+  findPlacesWith,
+};
