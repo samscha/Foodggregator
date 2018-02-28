@@ -41,6 +41,12 @@ const rootReducer = (state = initialState, action) => {
         results: [],
       };
 
+    case actionType.RESET_SEARCH:
+      return {
+        ...state,
+        search: {},
+      };
+
     default:
       return {
         ...state,
