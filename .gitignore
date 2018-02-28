@@ -4,4 +4,4 @@
 # misc
 .DS_Store
 config.js
-.vscode
+/.vscode
