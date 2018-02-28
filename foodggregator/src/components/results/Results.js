@@ -42,13 +42,10 @@ class Results extends Component {
 
         <div className="ResultsSeparator" />
 
-        {this.state.results.map(result => {
+        {this.state.results.map(place => {
           return (
-            <div
-              className="ResultsContainer"
-              key={Object.values(Object.values(result)[0][0])[0].id}
-            >
-              <Result result={result} />
+            <div className="ResultsContainer" key={place.name + place.address}>
+              <Result place={place} />
             </div>
           );
         })}

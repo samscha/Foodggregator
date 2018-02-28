@@ -8,7 +8,11 @@ export const FETCH_RESULTS_FINISH = 'FETCH_RESULTS_FINISH';
 const SERVER_ADDRESS = 'http://localhost:3030';
 
 export const fetchResults = search => {
-  const fetchResultsAPICall = axios.post(`${SERVER_ADDRESS}/places`, search);
+  const fetchResultsAPICall = axios.get(
+    `${SERVER_ADDRESS}/places?query=${search.query}&location=${
+      search.location
+    }`,
+  );
 
   return dispatch => {
     dispatch({ type: FETCH_RESULTS_START, payload: search });
