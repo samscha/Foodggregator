@@ -7,8 +7,7 @@ const { OK, USER_ERROR, SERVER_ERROR } = config.status;
 const {
   fetchAPI,
   fetchAPIWith,
-  createPlacesFrom,
-  findPlacesWith,
+  comebineThese,
 } = require('../controllers/placesControllers');
 
 const {
@@ -43,15 +42,24 @@ router.get('/', (req, res) => {
         Promise.all(createYelpPlacesFrom(values[1])),
       ])
         .then(values => {
-          // res.json(values);
+          // res.json(values.reduce((s, e) => s.concat(e)));
+          // return; // res.json(values);
           // return;
+
+          // console.log('combined', comebineThese(values));
+          res.json(comebineThese(values));
+          return;
 
           // createPlacesFrom(values);
 
           Promise.all(createPlacesFrom(values))
             .then(values => {
-              findPlacesWith(values[0].concat(values[1]))
-                .then(value => res.status(OK).json(value))
+              // findPlacesWith(values[0].concat(values[1]))
+              console.log(values);
+              // value =>
+              res
+                .status(OK)
+                .json(value)
                 .catch(err => res.status(SERVER_ERROR).json(err));
               // console.log('results for route', values);
               // res.status(OK).json(findPlacesWith(values[0].concat(values[1])));
