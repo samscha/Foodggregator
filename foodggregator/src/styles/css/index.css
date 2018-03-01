@@ -195,7 +195,8 @@ body {
 }
 @media (min-width: 1100px) {
   .Search .SearchIsNotFetchingResults {
-    width: 85%;
+    width: 75%;
+    max-width: 900px;
     margin: 0 auto;
     flex-direction: row;
   }
@@ -262,6 +263,7 @@ body {
 }
 .Results {
   width: 95%;
+  max-width: 900px;
   margin: 0 auto;
 }
 .Results .ResultsSearch {
@@ -300,4 +302,7 @@ body {
 .Result .ResultAddress {
   font-size: 1.05rem;
   display: inline;
+}
+.Result .ResultSources {
+  font-size: 1.6rem;
 }

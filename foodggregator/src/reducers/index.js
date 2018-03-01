@@ -23,7 +23,6 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case actionType.FETCH_RESULTS_SUCCESS:
-      // console.log(action.payload);
       return {
         ...state,
         results: action.payload,

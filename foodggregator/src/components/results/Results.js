@@ -12,6 +12,11 @@ class Results extends Component {
     results: [],
   };
 
+  componentWillMount() {
+    // if (!this.props.search.query || !this.props.search.location)
+    //   this.props.history.push('/');
+  }
+
   componentDidMount() {
     this.setState({ search: this.props.search, results: this.props.results });
   }
