@@ -271,23 +271,17 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: row;
 }
-@media (min-width: 768px) {
+@media (min-width: 1100px) {
   .Results .ResultsSearch {
     align-items: unset;
     justify-content: unset;
-    flex-direction: row;
   }
 }
 .Results .ResultsSearch .ResultsSearch__separator {
   margin: 0 7px;
-  display: none;
-}
-@media (min-width: 768px) {
-  .Results .ResultsSearch .ResultsSearch__separator {
-    display: flex;
-  }
+  display: flex;
 }
 .Results .ResultsSeparator {
   height: 7px;

@@ -10,21 +10,16 @@
     border-bottom: solid 1px;
 
     .flexCenter();
-    flex-direction: column;
+    flex-direction: row;
 
-    @media @tablet {
+    @media @laptop {
       .flexUncenter();
-      flex-direction: row;
     }
 
     .ResultsSearch__separator {
       margin: 0 7px;
 
-      display: none;
-
-      @media @tablet {
-        display: flex;
-      }
+      display: flex;
     }
   }
 

@@ -36,9 +36,6 @@ class Results extends Component {
         <Separator />
 
         <div className="ResultsSearch">
-          {/* {Object.keys(this.state.search).length === 0
-            ? null
-            :  */}
           <div className="ResultsSearch__query">
             {this.state.search.query
               ? this.state.search.query.toLowerCase()
