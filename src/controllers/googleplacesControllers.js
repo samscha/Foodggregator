@@ -7,7 +7,7 @@ const { urls, output, key } = APIs.googleplaces;
 const getGoogleplacesTextsearchUrl = (query, location) => {
   return `${
     urls.textsearch
-  }/${output}?key=${key}&type=restaurant&query=${query}+${location}`;
+  }/${output}?key=${key}&query=${query}+in+${location}`;
 };
 
 const getGooglePlacesDetailsUrl = placeId => {
