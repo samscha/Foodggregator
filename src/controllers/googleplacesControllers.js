@@ -5,9 +5,8 @@ const { APIs } = require('../../config.js');
 const { urls, output, key } = APIs.googleplaces;
 
 const getGoogleplacesTextsearchUrl = (query, location) => {
-  return `${
-    urls.textsearch
-  }/${output}?key=${key}&query=${query}+in+${location}`;
+  console.log(location);
+  return `${urls.textsearch}/${output}?key=${key}&query=${query} ${location}`;
 };
 
 const getGooglePlacesDetailsUrl = placeId => {
