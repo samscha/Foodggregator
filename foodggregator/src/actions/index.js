@@ -12,7 +12,7 @@ export const RESET_SEARCH = 'RESET_SEARCH';
 
 const SERVER_ADDRESS = 'http://localhost:3030';
 
-export const fetchResults = search => {
+export const fetchResults = (search, history) => {
   const fetchResultsAPICall = axios.get(
     `${SERVER_ADDRESS}/places?query=${search.query.toLowerCase()}&location=${search.location.toLowerCase()}`,
   );
@@ -25,6 +25,7 @@ export const fetchResults = search => {
       .then(({ data }) => {
         dispatch({ type: FETCH_RESULTS_SUCCESS, payload: data });
         dispatch({ type: FETCH_RESULTS_FINISH });
+        history.push('/results');
       })
       .catch(err => {
         dispatch({ type: FETCH_RESULTS_ERROR, payload: err });

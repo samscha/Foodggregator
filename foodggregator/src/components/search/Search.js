@@ -14,11 +14,11 @@ class Search extends Component {
   };
 
   searchButtonClickedHandler = _ => {
-    this.props.fetchResults(this.state);
+    this.props.fetchResults(this.state, this.props.history);
   };
 
   checkIfReturn = e =>
-    e.keyCode === 13 ? this.props.fetchResults(this.state) : null;
+    e.keyCode === 13 ? this.searchButtonClickedHandler() : null;
 
   render() {
     return (
