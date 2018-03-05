@@ -147,7 +147,7 @@ body {
 }
 .Line {
   width: 95%;
-  max-width: 900px;
+  max-width: 1400px;
   margin: 0 auto;
   border: solid 0.5px #ff875a;
 }
@@ -196,7 +196,7 @@ body {
 @media (min-width: 1100px) {
   .Search .SearchIsNotFetchingResults {
     width: 75%;
-    max-width: 900px;
+    max-width: 1400px;
     margin: 0 auto;
     flex-direction: row;
   }
@@ -263,7 +263,7 @@ body {
 }
 .Results {
   width: 95%;
-  max-width: 900px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 .Results .ResultsSearch {

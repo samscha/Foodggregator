@@ -9,6 +9,14 @@ class Search extends Component {
     location: '',
   };
 
+  componentDidMount() {
+    if (this.props.search)
+      this.setState({
+        query: this.props.search.query,
+        location: this.props.search.location,
+      });
+  }
+
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };

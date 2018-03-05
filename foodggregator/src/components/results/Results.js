@@ -9,29 +9,21 @@ import NoResults from './NoResults';
 class Results extends Component {
   state = {
     search: {},
+    geocode: [],
     results: [],
   };
 
-  componentWillMount() {
-    // if (!this.props.search.query || !this.props.search.location)
-    //   this.props.history.push('/');
-  }
-
   componentDidMount() {
-    this.setState({ search: this.props.search, results: this.props.results });
+    this.setState({
+      search: this.props.search,
+      geocode: this.props.geocode,
+      results: this.props.results,
+    });
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   if (this.props.results.length !== nextProps.results)
-  //     this.setState({ results: nextProps.results });
-  // }
-
-  componentWillReceiveProps(nextProps) {
-    // if (this.props.results.length !== nextProps.results.length)
-    //   this.setState({ results: nextProps.results });
-    // if (this.props.search !== nextProps.search)
-    //   this.setState({ search: nextProps.search });
-  }
+  renderAddress = _ => {
+    return this.state.geocode[0].address_components[2].long_name.toLowerCase();
+  };
 
   render() {
     return (
@@ -52,18 +44,14 @@ class Results extends Component {
           </div>
 
           <div className="ResultsSearch__location">
-            {this.state.search.location
-              ? this.state.search.location.toLowerCase()
-              : null}
+            {this.state.geocode.length === 1 ? this.renderAddress() : null}
           </div>
         </div>
-
-        <div className="ResultsSeparator" />
 
         {this.state.results.map(place => {
           return (
             <div className="ResultsContainer" key={place._id}>
-              <Result place={place} />
+              <Result place={place} geocode={this.state.geocode} />
             </div>
           );
         })}
@@ -80,6 +68,7 @@ const mapStateToProps = state => {
   return {
     results: state.results,
     search: state.search,
+    geocode: state.geocode,
   };
 };
 
