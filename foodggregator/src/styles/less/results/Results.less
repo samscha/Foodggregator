@@ -5,16 +5,24 @@
   margin: 0 auto;
 
   .ResultsSearch {
-    font-size: @textFontSize;
+    padding: 0 0 4px 0;
+
+    font-size: @tabletTextFontSize;
 
     color: @themeColor;
-    border-bottom: solid 1px;
+    #borderCreator > .bottom();
 
     .flexCenter();
     flex-direction: row;
 
+    @media @tablet {
+      font-size: @laptopTextFontSize;
+    }
+
     @media @laptop {
       .flexUncenter();
+
+      font-size: @laptopTextFontSize;
     }
 
     .ResultsSearch__separator {
@@ -24,14 +32,14 @@
     }
   }
 
-  .ResultsSeparator {
-    .emptySpace();
-  }
-
   .ResultsContainer {
     // width: 90%;
 
-    margin: 40px auto;
+    margin: 24px auto;
+    height: 122px;
+    // padding: 10px 0;
     // font-size: 1.4rem;
+
+    #borderCreator > .general();
   }
 }

@@ -2,6 +2,7 @@ import * as actionType from '../actions';
 
 const initialState = {
   search: {},
+  geocode: {},
   results: [],
   isFetchingResults: false,
   error: '',
@@ -25,6 +26,7 @@ const rootReducer = (state = initialState, action) => {
     case actionType.FETCH_RESULTS_SUCCESS:
       return {
         ...state,
+        geocode: action.payload.splice(0, 1),
         results: action.payload,
       };
 

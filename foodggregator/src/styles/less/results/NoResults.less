@@ -3,6 +3,14 @@
   flex-direction: column;
 
   .NoResultsText {
-    font-size: @textFontSize;
+    font-size: @phoneSubTitleFontSize;
+
+    @media @tablet {
+      font-size: @tabletSubTitleFontSize;
+    }
+
+    @media @laptop {
+      font-size: @laptopSubTitleFontSize;
+    }
   }
 }

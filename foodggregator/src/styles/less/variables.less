@@ -2,11 +2,31 @@
 
 @themeColor: #ff875a;
 
-@titleFontSize: 2.75rem;
-@subTitleFontSize: 1.95rem;
-@textFontSize: 1.6rem;
-@detailsFontSize: 1.05rem;
+@baseTitleFontSize: 1.3rem;
+@baseSubTitleFontSize: 1.25rem;
+@baseTextFontSize: 0.85rem;
+@baseDetailFontSize: 1.05rem;
 
+@phoneFactor: 1;
 @phone: ~'(min-width: 400px)';
+@phoneTitleFontSize: @baseTitleFontSize * @phoneFactor;
+@phoneSubTitleFontSize: @baseSubTitleFontSize * @phoneFactor;
+@phoneTextFontSize: @baseTextFontSize * @phoneFactor;
+
+@tabletFactor: 1.5;
 @tablet: ~'(min-width: 768px)';
-@laptop: ~'(min-width: 1100px)';
+@tabletTitleFontSize: @baseTitleFontSize * @tabletFactor;
+@tabletSubTitleFontSize: @baseSubTitleFontSize * @tabletFactor;
+@tabletTextFontSize: @baseTextFontSize * @tabletFactor;
+
+@laptopFactor: 2.5;
+@laptop: ~'(min-width: 1400px)';
+@laptopTitleFontSize: @baseTitleFontSize @laptopFactor;
+@laptopSubTitleFontSize: @baseSubTitleFontSize * @laptopFactor;
+@laptopTextFontSize: @baseTextFontSize * @laptopFactor;
+@laptopDetailTextFontSize: 1.05rem;
+
+@appFactor: 3.5;
+@appTitleFontSize: @baseTitleFontSize * @appFactor;
+@appSubTitleFontSize: @baseSubTitleFontSize * @appFactor;
+@appTextFontSize: @baseTextFontSize * @appFactor;

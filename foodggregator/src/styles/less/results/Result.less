@@ -1,23 +1,70 @@
 .Result {
-  // display: inline;
+  // height: 122px;
+  // margin: 7px 0;
 
-  margin: 7px 0;
+  display: flex;
+  flex-direction: row;
 
-  .ResultName {
+  .ResultImg {
     margin: 0 7px 0 0;
 
-    font-size: @textFontSize;
-
-    display: inline;
+    img {
+      #imgCreator > .medium();
+      border: 7px solid @themeColor;
+    }
   }
 
-  .ResultAddress {
-    font-size: @detailsFontSize;
+  .ResultInfo {
+    margin: 7px 0 0 7px;
 
-    display: inline;
-  }
+    flex-direction: column;
 
-  .ResultSources {
-    font-size: @textFontSize;
+    .ResultName {
+      margin: 0 7px 7px 0;
+
+      font-size: @phoneTitleFontSize;
+
+      @media @tablet {
+        font-size: @tabletTitleFontSize;
+      }
+
+      @media @laptop {
+        font-size: @laptopTitleFontSize;
+
+        display: inline;
+      }
+    }
+
+    .ResultAddress {
+      margin: 0 0 7px 0;
+
+      font-size: @phoneTextFontSize;
+
+      @media @tablet {
+        font-size: @tabletTextFontSize;
+      }
+
+      @media @laptop {
+        font-size: @laptopDetailTextFontSize;
+
+        display: inline;
+      }
+    }
+
+    .ResultSources {
+      font-size: @baseTextFontSize;
+
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      .ResultSource__yelp {
+        #iconCreator > .small();
+
+        @media @tablet {
+          #iconCreator > .medium();
+        }
+      }
+    }
   }
 }

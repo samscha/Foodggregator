@@ -10,6 +10,7 @@ const YelpSchema = new mongoose.Schema({
     required: true,
   },
   intlPhone: String,
+  imgUri: String,
   location: {
     lat: Number,
     lng: Number,
