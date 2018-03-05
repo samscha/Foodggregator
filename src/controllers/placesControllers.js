@@ -1,36 +1,13 @@
 const Place = require('../models/place');
 
-const fetch = require('node-fetch');
-const cache = require('../cache');
-
-const { APIsIndex } = require('../../config');
 const { MATCH_PERCENT_THRESHOLD } = require('../../config');
-
-const fetchAPI = url => {
-  return new Promise((resolve, reject) => {
-    fetch(url)
-      .then(res => res.json())
-      .then(data => (cache[url] = data))
-      .then(_ => resolve(cache[url]))
-      .catch(err => reject(err));
-  });
-};
-
-const fetchAPIWith = (url, options) => {
-  return new Promise((resolve, reject) => {
-    fetch(url, options)
-      .then(res => res.json())
-      .then(data => (cache[url] = data))
-      .then(_ => resolve(cache[url]))
-      .catch(err => reject(err));
-  });
-};
 
 const comebineThese = values => {
   let results = [];
 
   values[0].forEach(place => {
     results.push({
+      id: place.id,
       name: place.name,
       address: place.address,
       intlPhone: place.intlPhone,
@@ -43,7 +20,6 @@ const comebineThese = values => {
   // console.log(results);
 
   values[1].forEach(place => {
-    // console.log(place);
     const matchPhoneIndex = results.findIndex(
       p => p.intlPhone === place.intlPhone,
     );
@@ -78,6 +54,7 @@ const comebineThese = values => {
     } else {
       // console.log('else');
       results.push({
+        id: place.id,
         name: place.name,
         address: place.address,
         intlPhone: place.intlPhone,
@@ -109,20 +86,24 @@ const createPlacesFrom = data => {
 
   return data.map(place => {
     return new Promise((resolve, reject) => {
-      Place({
-        name: place.name,
-        address: place.address,
-        intlPhone: place.intlPhone,
-        googleplace: place.googleplace ? place.googleplace._id : null,
-        yelp: place.yelp ? place.yelp._id : null,
-      })
-        .save()
-        .then(savedPlace => resolve(savedPlace._id))
-        .catch(err => reject(err));
+      Place.find({ id: place.id }).then(
+        results =>
+          results.length === 1
+            ? resolve(results[0]._id)
+            : Place({
+                id: place.id,
+                name: place.name,
+                address: place.address,
+                intlPhone: place.intlPhone,
+                googleplace: place.googleplace ? place.googleplace._id : null,
+                yelp: place.yelp ? place.yelp._id : null,
+              })
+                .save()
+                .then(savedPlace => resolve(savedPlace._id))
+                .catch(err => reject(err)),
+      );
     });
   });
-
-  // return data.map((API, i) => Promise.all(createPlacesFor(API, APIsIndex[i])));
 };
 // const combineData = (data, results) => {
 //   console.log('results', results.length);
@@ -251,8 +232,6 @@ const findPlacesWith = ids => {
 };
 
 module.exports = {
-  fetchAPI,
-  fetchAPIWith,
   comebineThese,
   createPlacesFrom,
   findPlacesWith,

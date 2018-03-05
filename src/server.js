@@ -10,8 +10,10 @@ const places = require('./routes/places');
 
 const port = config.port;
 
-// mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/places', { user, pass, authSource });
+mongoose.connect(
+  'mongodb://localhost/places',
+  config.useMongodAuth ? { user, pass, authSource } : null,
+);
 
 const server = express();
 server.use(cors());
@@ -22,4 +24,3 @@ server.listen(port, err => {
   if (err) console.log(`There was an error starting the server: ${err}`);
   // else console.log(`Server listening on port ${port}`);
 });
-
