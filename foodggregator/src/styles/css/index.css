@@ -323,12 +323,14 @@ body {
 }
 .Result .ResultImg {
   margin: 0 7px 0 0;
-}
-.Result .ResultImg img {
   width: 120px;
   height: 120px;
+  border-right: 2px solid #ff875a;
+}
+.Result .ResultImg img {
+  width: 118px;
+  height: 118px;
   object-fit: cover;
-  border: 7px solid #ff875a;
 }
 .Result .ResultInfo {
   margin: 7px 0 0 7px;

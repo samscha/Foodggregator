@@ -3,6 +3,7 @@ import React from 'react';
 import { calcDistBetw } from '../../helpers/calcDistBetw';
 
 import yelpBurst from '../../assets/Yelp_burst_positive_RGB.png';
+import genericPicture from '../../assets/generic.jpg';
 
 const Result = props => {
   const place = props.place;
@@ -12,12 +13,8 @@ const Result = props => {
     <div className="Result">
       <div className="ResultImg">
         <img
-          src={
-            place.yelp
-              ? place.yelp.imgUri
-              : 'https://image.flaticon.com/icons/svg/138/138310.svg'
-          }
-          alt="https://www.flaticon.com/free-icon/store_138310"
+          src={place.yelp ? place.yelp.imgUri : genericPicture}
+          alt="place"
         />
       </div>
 
