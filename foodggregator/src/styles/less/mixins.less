@@ -26,6 +26,20 @@
   }
 }
 
+#textFontSize() {
+  .subTitle() {
+    font-size: @phoneSubTitleFontSize;
+
+    @media @tablet {
+      font-size: @tabletSubTitleFontSize;
+    }
+
+    @media @laptop {
+      font-size: @laptopSubTitleFontSize;
+    }
+  }
+}
+
 #iconCreator() {
   .small() {
     width: 35px;
@@ -82,4 +96,18 @@
   font-size: 1.35rem;
 
   outline: none;
+}
+
+.transition (@transition) {
+  -webkit-transition: @transition;
+  -moz-transition: @transition;
+  -ms-transition: @transition;
+  -o-transition: @transition;
+}
+
+.animation (@name, @duration: 300ms, @delay: 0, @ease: ease) {
+  animation: @name @duration @delay @ease;
+  -webkit-animation: @name @duration @delay @ease;
+  -moz-animation: @name @duration @delay @ease;
+  -ms-animation: @name @duration @delay @ease;
 }

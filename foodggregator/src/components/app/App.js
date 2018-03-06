@@ -5,6 +5,7 @@ import Header from '../header/Header';
 import Line from './Line';
 import Separator from './Separator';
 import Search from '../search/Search';
+import Loading from './Loading';
 
 class App extends Component {
   render() {
@@ -19,6 +20,8 @@ class App extends Component {
         <Search history={this.props.history} />
 
         <Separator />
+
+        <Loading />
       </div>
     );
   }

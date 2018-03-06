@@ -151,6 +151,33 @@ body {
   margin: 0 auto;
   border: solid 0.5px #ff875a;
 }
+.Loading {
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+  margin: 0 auto;
+  animation: 0.7s ease-in-out 0s infinite alternate loading-anim;
+}
+@media (min-width: 768px) {
+  .Loading {
+    font-size: 1.875rem;
+  }
+}
+@media (min-width: 1400px) {
+  .Loading {
+    font-size: 3.125rem;
+  }
+}
+@keyframes loading-anim {
+  from {
+    margin-left: 0%;
+  }
+  to {
+    margin-left: 30%;
+  }
+}
 /* buttons */
 .GoBackToHomeButton {
   width: 40%;
