@@ -14,7 +14,9 @@ class App extends Component {
         <Header />
 
         <Separator />
+
         <Line />
+
         <Separator />
 
         <Search history={this.props.history} />
