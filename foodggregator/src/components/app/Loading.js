@@ -5,7 +5,13 @@ class Loading extends Component {
   render() {
     return (
       <div className="Loading">
-        {this.props.isFetchingResults ? '...' : null}
+        <div className="LoadingBar">
+          {this.props.isFetchingResults ? '...' : null}
+        </div>
+
+        <div className="LoadingError">
+          {this.props.error ? this.props.error.message : null}
+        </div>
       </div>
     );
   }
@@ -14,6 +20,7 @@ class Loading extends Component {
 const mapStateToProps = state => {
   return {
     isFetchingResults: state.isFetchingResults,
+    error: state.error,
   };
 };
 

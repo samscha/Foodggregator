@@ -38,6 +38,18 @@
       font-size: @laptopSubTitleFontSize;
     }
   }
+
+  .text() {
+    font-size: @phoneTextFontSize;
+
+    @media @tablet {
+      font-size: @tabletTextFontSize;
+    }
+
+    @media @laptop {
+      font-size: @laptopTextFontSize;
+    }
+  }
 }
 
 #iconCreator() {

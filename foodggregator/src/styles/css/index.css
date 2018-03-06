@@ -151,7 +151,7 @@ body {
   margin: 0 auto;
   border: solid 0.5px #ff875a;
 }
-.Loading {
+.Loading .LoadingBar {
   font-size: 1.25rem;
   display: flex;
   align-items: center;
@@ -161,13 +161,30 @@ body {
   animation: 0.7s ease-in-out 0s infinite alternate loading-anim;
 }
 @media (min-width: 768px) {
-  .Loading {
+  .Loading .LoadingBar {
     font-size: 1.875rem;
   }
 }
 @media (min-width: 1400px) {
-  .Loading {
+  .Loading .LoadingBar {
     font-size: 3.125rem;
+  }
+}
+.Loading .LoadingError {
+  font-size: 0.85rem;
+  color: #cc0000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (min-width: 768px) {
+  .Loading .LoadingError {
+    font-size: 1.275rem;
+  }
+}
+@media (min-width: 1400px) {
+  .Loading .LoadingError {
+    font-size: 2.125rem;
   }
 }
 @keyframes loading-anim {

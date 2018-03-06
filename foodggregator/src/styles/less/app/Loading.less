@@ -1,11 +1,20 @@
 .Loading {
-  #textFontSize > .subTitle();
-  .flexCenter();
+  .LoadingBar {
+    #textFontSize > .subTitle();
+    .flexCenter();
 
-  width: 70%;
-  margin: 0 auto;
+    width: 70%;
+    margin: 0 auto;
 
-  animation: 0.7s ease-in-out 0s infinite alternate loading-anim;
+    animation: 0.7s ease-in-out 0s infinite alternate loading-anim;
+  }
+
+  .LoadingError {
+    #textFontSize > .text();
+    color: @errorColor;
+
+    .flexCenter();
+  }
 }
 
 @keyframes loading-anim {

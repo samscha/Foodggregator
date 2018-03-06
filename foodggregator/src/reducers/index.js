@@ -33,7 +33,7 @@ const rootReducer = (state = initialState, action) => {
     case actionType.FETCH_RESULTS_ERROR:
       return {
         ...state,
-        error: action.payload,
+        error: action.payload.response.data,
       };
 
     case actionType.FETCH_RESULTS_FINISH:
