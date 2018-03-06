@@ -11,6 +11,13 @@ const cache = require('../cache');
 const getGoogleplaceGeocode = (req, res, next) => {
   const { query, location } = req.query;
 
+  if (!query || !location) {
+    res
+      .status(USER_ERROR)
+      .json({ message: 'Please provide a query and a location.' });
+    return;
+  }
+
   fetchAPI(`${urls.geocode}/${output}?key=${key}&address=${location}`)
     .then(response => {
       req.geocode = response.results[0];
