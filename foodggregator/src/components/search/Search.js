@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { fetchResults } from '../../actions';
 
-import SearchOptions from './SearchOptions';
+// import SearchOptions from './SearchOptions';
 
 class Search extends Component {
   state = {
@@ -60,7 +60,7 @@ class Search extends Component {
 
           <div className="SearchSeparator" />
 
-          <SearchOptions />
+          {/* <SearchOptions /> */}
 
           <div
             className="SearchButton"

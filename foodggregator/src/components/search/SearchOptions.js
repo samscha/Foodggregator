@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 
+// import { prompt } from '../geoloc/geoLocation';
+
 class SearchOptions extends Component {
   state = {
     geoLocation: {},
     geoLocationChecked: false,
   };
 
-  checkboxClickHandler = e => {
-    const { value } = e.target;
-    this.setState({ value: !this.state.value });
+  geoLocationCheckboxClickHandler = _ => {
+    if (this.state.geoLocationChecked) return;
+
+    this.setState({ geoLocationChecked: !this.state.geoLocationChecked });
   };
 
   render() {
@@ -19,7 +22,7 @@ class SearchOptions extends Component {
         name="geoLocation"
         checked={this.state.geoLocationChecked}
         value="geoLocationChecked"
-        onChange={this.checkboxClickHandler}
+        onChange={this.geoLocationCheckboxClickHandler}
       />
     );
   }
