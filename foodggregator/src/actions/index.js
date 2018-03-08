@@ -9,6 +9,7 @@ export const FETCH_RESULTS_FINISH = 'FETCH_RESULTS_FINISH';
 
 export const RESET_RESULTS = 'RESET_RESULTS';
 export const RESET_SEARCH = 'RESET_SEARCH';
+export const RESET_ERROR = 'RESET_ERROR';
 
 const SERVER_ADDRESS = 'http://localhost:3030';
 
@@ -38,5 +39,6 @@ export const headerClicked = _ => {
   return dispatch => {
     dispatch({ type: RESET_RESULTS });
     dispatch({ type: RESET_SEARCH });
+    dispatch({ type: RESET_ERROR });
   };
 };
