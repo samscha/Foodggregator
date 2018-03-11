@@ -20,7 +20,7 @@ const Result = props => {
 
       <div className="ResultInfo">
         <div className="ResultName">{place.name}</div>
-        <div className="ResultAddress">{`${calcDistBetw(
+        <div className="ResultDist">{`${calcDistBetw(
           place.googleplace === null
             ? place.yelp.location
             : place.googleplace.location,

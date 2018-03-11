@@ -149,7 +149,7 @@ body {
   width: 95%;
   max-width: 1400px;
   margin: 0 auto;
-  border: solid 0.5px #ff875a;
+  border: solid 1px #ff875a;
 }
 .Loading .LoadingBar {
   font-size: 1.25rem;
@@ -396,17 +396,17 @@ body {
     display: inline;
   }
 }
-.Result .ResultInfo .ResultAddress {
+.Result .ResultInfo .ResultDist {
   margin: 0 0 7px 0;
   font-size: 0.85rem;
 }
 @media (min-width: 768px) {
-  .Result .ResultInfo .ResultAddress {
+  .Result .ResultInfo .ResultDist {
     font-size: 1.275rem;
   }
 }
 @media (min-width: 1400px) {
-  .Result .ResultInfo .ResultAddress {
+  .Result .ResultInfo .ResultDist {
     font-size: 1.05rem;
     display: inline;
   }
