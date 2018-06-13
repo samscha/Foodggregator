@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Header from '../header/Header';
-import Line from './Line';
-import Separator from './Separator';
-import Search from '../search/Search';
-import Loading from './Loading';
+import Header from './components/header/Header';
+import Line from './components/app/Line';
+import Separator from './components/app/Separator';
+import Search from './components/search/Search';
+import Loading from './components/app/Loading';
 
 class App extends Component {
   render() {

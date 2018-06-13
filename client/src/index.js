@@ -10,7 +10,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import rootReducer from './reducers';
 
-import App from './components/app/App';
+import App from './App';
 import CheckFor from './components/hoc/CheckFor';
 import Results from './components/results/Results';
 
