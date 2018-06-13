@@ -5,7 +5,7 @@ const router = require('express').Router();
 /**
  * api endpoints
  */
-// router.use('/users', require('./api/endpoints/user'));
+router.use('/places', require('./places'));
 // router.use('/pictures', require('./api/endpoints/picture'));
 // add more api endpoints here
 
