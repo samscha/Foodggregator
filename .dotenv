@@ -1,0 +1,4 @@
+CORS=["https://example.com","http://localhost:3000"]
+DEBUG=true
+DEV=true
+PORT=5555
