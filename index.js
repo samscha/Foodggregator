@@ -1,6 +1,6 @@
 const debug = process.env.DEBUG === 'true';
 
-const server = require('./src/server');
+const server = require('./server');
 
 const port = process.env.PORT || 5555;
 
