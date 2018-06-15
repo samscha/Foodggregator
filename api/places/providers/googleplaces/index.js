@@ -1,11 +1,15 @@
 const send = require('../../../utils');
 const fetch = require('../../fetch');
 const { details } = require('./utils');
+const cache = require('../../cache');
 
 const { uris, output, key } = JSON.parse(process.env.GOOGLEPLACES);
 
 /**
- * https://developers.google.com/maps/documentation/geocoding/start
+ * first check if cached entry exists for location
+ * if so, use cached, else write to cache after fetch (if no errors)
+ *
+ *  https://developers.google.com/maps/documentation/geocoding/start
  *
  * req.geometry =
  * {
@@ -16,6 +20,17 @@ const { uris, output, key } = JSON.parse(process.env.GOOGLEPLACES);
  * req.formattedAddress = `123 Example St, Exampleville, EX, 12345.`
  */
 exports.geocode = (req, res, next) => {
+  const cached = cache.read(req.query.location);
+
+  if (cached) {
+    req.geocode = { ...cached };
+    req.geometry = req.geocode.results[0].geometry.location;
+    req.formattedAddress = req.geocode.results[0].formatted_address;
+
+    next();
+    return;
+  }
+
   const uri = `${uris.geocode}/${output}?key=${key}&address=${req.loc}`;
 
   fetch(uri, undefined, (err, json) => {
@@ -23,6 +38,8 @@ exports.geocode = (req, res, next) => {
       send(res, err, `error fetching geocode data`, 500);
       return;
     }
+
+    cache.write(req.query.location, { ...json });
 
     req.geocode = { ...json };
     req.geometry = req.geocode.results[0].geometry.location;

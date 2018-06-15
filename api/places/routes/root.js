@@ -1,5 +1,3 @@
-const dev = process.env.DEV === 'true';
-
 const router = require('express').Router();
 
 /**
@@ -18,6 +16,8 @@ const combine = require('../utils/combine');
 const sanitize = require('../../utils/sanitize');
 const send = require('../../utils');
 const validate = require('../../utils/validate');
+
+const dev = process.env.DEV === 'true';
 
 router
   .route(`/`)
