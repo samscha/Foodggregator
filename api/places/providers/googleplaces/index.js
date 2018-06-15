@@ -50,6 +50,10 @@ exports.geocode = (req, res, next) => {
 };
 
 /**
+ * calculate cache key based on geometry and location
+ * check cache (if cached, geometry will match geocode cache)
+ * return cached result if cache key exists, else fetch ahd cache
+ *
  * https://developers.google.com/places/web-service/search
  *
  * set search radius to 50m in fetch `uri`
@@ -65,7 +69,15 @@ exports.geocode = (req, res, next) => {
  * @param {Object} geometry - latitude (lat) and longitude (lng) of query
  * @param {string} query - query from user (optional)
  */
-exports.search = (geometry, query) => {
+exports.search = (geometry, query = 'food') => {
+  const cacheKey = `${JSON.stringify(geometry)}${query}`;
+  const cached = cache.read(cacheKey);
+  console.log(cache);
+
+  if (cached) {
+    return cached;
+  }
+
   const uri = `${uris.nearbysearch}/${output}?key=${key}&location=${
     geometry.lat
   },${geometry.lng}&radius=50&type=restaurant&keyword=${query}`;
@@ -76,12 +88,11 @@ exports.search = (geometry, query) => {
       if (json.error_message) reject(json.error_message);
 
       details(json.results)
-        .then(values => resolve(values))
+        .then(values => {
+          cache.write(cacheKey, values);
+          resolve(values);
+        })
         .catch(reason => reject(reason));
     });
   });
-};
-
-exports.detail = (req, res, next) => {
-  //
 };
