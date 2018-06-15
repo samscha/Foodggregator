@@ -1,4 +1,5 @@
 CORS=["https://example.com","http://localhost:3000"]
 DEBUG=true
 DEV=true
+GOOGLEPLACES='{"uris":{"textsearch":"https://maps.googleapis.com/maps/api/place/textsearch","details":"https://maps.googleapis.com/maps/api/place/details","geocode":"https://maps.googleapis.com/maps/api/geocode","photos":"https://maps.googleapis.com/maps/api/place/photo"},"output":"json","key":"PLACES_API_KEY_HERE"}'
 PORT=5555
