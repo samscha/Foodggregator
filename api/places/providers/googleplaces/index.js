@@ -72,7 +72,6 @@ exports.geocode = (req, res, next) => {
 exports.search = (geometry, query = 'food') => {
   const cacheKey = `${JSON.stringify(geometry)}${query}`;
   const cached = cache.read(cacheKey);
-  console.log(cache);
 
   if (cached) {
     return cached;
