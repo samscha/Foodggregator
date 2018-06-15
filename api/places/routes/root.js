@@ -1,12 +1,17 @@
 const router = require('express').Router();
 
 /**
- * geocode to normalize search locations (from google places api)
+ * checker
  */
-const geocode = require('../providers/googleplaces').geocode;
+const check = require('../utils/check');
 
 /**
- * places combiner
+ * fetch util
+ */
+const fetch = require('../utils/fetch');
+
+/**
+ * combiner
  */
 const combine = require('../utils/combine');
 
@@ -32,8 +37,13 @@ router
    * - req.geometry: lat/lng
    * - req.formattedAddress: formatted address
    */
-  .get(validate.search, sanitize.search, geocode, combine, (req, res) =>
-    send(res, req.places),
+  .get(
+    validate.search,
+    sanitize.search,
+    check.cache,
+    fetch.geocode,
+    combine.places,
+    (req, res) => send(res, req.places),
   );
 
 /**
