@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+const fetch = require('../../../../../../Library/Caches/typescript/2.9/node_modules/@types/node-fetch');
 const cache = require('../cache');
 
 const fetchAPI = url => {
