@@ -76,7 +76,6 @@ exports.places = (req, res, next) => {
  * @param {Array} places - combined places to combine into
  */
 const combine = (provider, places) => {
-  console.log(`${provider.key}: ${provider.places.length}`);
   if (places.length === 0) {
     provider.places.forEach(place => {
       places.push({
