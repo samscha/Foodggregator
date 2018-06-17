@@ -30,27 +30,36 @@ const Result = props => {
           )} mi`}
         </div>
         <div className="ResultSources">
-          <div
-            className="ResultSource__googleplace"
-            style={
-              place.googleplaces === undefined
-                ? { opacity: '0.2', cursor: 'not-allowed' }
-                : null
-            }
+          <a
+            href={place.googleplaces ? place.googleplaces.url : null}
+            target="_blank"
+            style={{ textDecoration: 'none', color: 'black' }}
           >
-            G
-          </div>
+            <div
+              className="ResultSource__googleplace"
+              // href={place.googleplaces.}
+              style={
+                place.googleplaces === undefined
+                  ? { opacity: '0.2', cursor: 'not-allowed' }
+                  : null
+              }
+            >
+              G
+            </div>
+          </a>
 
-          <img
-            className="ResultSource__yelp"
-            src={yelpBurst}
-            alt="yelp-burst"
-            style={
-              place.yelp === undefined
-                ? { opacity: '0.2', cursor: 'not-allowed' }
-                : null
-            }
-          />
+          <a href={place.yelp ? place.yelp.url : null} target="_blank">
+            <img
+              className="ResultSource__yelp"
+              src={yelpBurst}
+              alt="yelp-burst"
+              style={
+                place.yelp === undefined
+                  ? { opacity: '0.2', cursor: 'not-allowed' }
+                  : null
+              }
+            />
+          </a>
         </div>
       </div>
     </div>

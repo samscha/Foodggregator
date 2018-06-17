@@ -2,7 +2,7 @@
 CORS=["http://localhost:3000"]
 DEBUG=true
 DEV=true
-GOOGLEPLACES='{"uris":{"textsearch":"https://maps.googleapis.com/maps/api/place/textsearch","nearbysearch":"https://maps.googleapis.com/maps/api/place/nearbysearch","details":"https://maps.googleapis.com/maps/api/place/details","geocode":"https://maps.googleapis.com/maps/api/geocode","photos":"https://maps.googleapis.com/maps/api/place/photo"},"output":"json","fields":["international_phone_number","formatted_address"],"searchRadius":"40000","key":"YOUR_API_KEY_HERE"}'
+GOOGLEPLACES='{"uris":{"textsearch":"https://maps.googleapis.com/maps/api/place/textsearch","nearbysearch":"https://maps.googleapis.com/maps/api/place/nearbysearch","details":"https://maps.googleapis.com/maps/api/place/details","geocode":"https://maps.googleapis.com/maps/api/geocode","photos":"https://maps.googleapis.com/maps/api/place/photo"},"output":"json","fields":["international_phone_number","formatted_address","url"],"searchRadius":"40000","key":"YOUR_API_KEY_HERE"}'
 PLACE_MATCH_PERCENT_THRESHOLD=0.85
 PORT=5555
 YELP='{"uris":{"search":"https://api.yelp.com/v3/businesses/search"},"key":"YOUR_API_KEY_HERE"}'

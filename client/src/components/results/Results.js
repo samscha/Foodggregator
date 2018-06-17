@@ -27,7 +27,6 @@ class Results extends Component {
   };
 
   render() {
-    console.log(this.props.geocode);
     return (
       <div className="Results">
         <Header />
@@ -52,7 +51,7 @@ class Results extends Component {
 
         {this.state.results.map(place => {
           return (
-            <div className="ResultsContainer" key={place._id}>
+            <div className="ResultsContainer" key={place.id}>
               <Result place={place} geocode={this.state.geocode} />
             </div>
           );

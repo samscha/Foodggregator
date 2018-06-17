@@ -26,6 +26,7 @@ exports.details = places => {
             intlPhone: json.result.international_phone_number,
             address: json.result.formatted_address,
             formatted_address: undefined,
+            url: json.result.url,
           });
         });
       });
