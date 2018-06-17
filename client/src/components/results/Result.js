@@ -7,30 +7,33 @@ import genericPicture from '../../assets/generic.jpg';
 
 const Result = props => {
   const place = props.place;
-  const location = props.geocode[0].geometry.location;
+  // const location = props.geocode[0].geometry.location;
+  const location = props.geocode[0].results[0].geometry.location;
 
   return (
     <div className="Result">
       <div className="ResultImg">
         <img
-          src={place.yelp ? place.yelp.imgUri : genericPicture}
+          src={place.yelp ? place.yelp.image_url : genericPicture}
           alt="place"
         />
       </div>
 
       <div className="ResultInfo">
         <div className="ResultName">{place.name}</div>
-        <div className="ResultDist">{`${calcDistBetw(
-          place.googleplace === null
-            ? place.yelp.location
-            : place.googleplace.location,
-          location,
-        )} mi`}</div>
+        <div className="ResultDist">
+          {`${calcDistBetw(
+            place.googleplaces === undefined
+              ? place.yelp.coordinates
+              : place.googleplaces.geometry.location,
+            location,
+          )} mi`}
+        </div>
         <div className="ResultSources">
           <div
             className="ResultSource__googleplace"
             style={
-              place.googleplace === null
+              place.googleplaces === undefined
                 ? { opacity: '0.2', cursor: 'not-allowed' }
                 : null
             }
@@ -43,7 +46,7 @@ const Result = props => {
             src={yelpBurst}
             alt="yelp-burst"
             style={
-              place.yelp === null
+              place.yelp === undefined
                 ? { opacity: '0.2', cursor: 'not-allowed' }
                 : null
             }

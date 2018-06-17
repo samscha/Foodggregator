@@ -55,7 +55,7 @@ router
     (req, res) => {
       cache.write(JSON.stringify(req.query), req.places);
 
-      send(res, req.places);
+      send(res, [req.geocode].concat(req.places));
     },
   );
 

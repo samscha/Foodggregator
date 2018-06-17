@@ -11,11 +11,15 @@ export const RESET_RESULTS = 'RESET_RESULTS';
 export const RESET_SEARCH = 'RESET_SEARCH';
 export const RESET_ERROR = 'RESET_ERROR';
 
-const SERVER_ADDRESS = 'http://localhost:3030';
+const ROOT = '/api';
 
 export const fetchResults = (search, history) => {
   const fetchResultsAPICall = axios.get(
-    `${SERVER_ADDRESS}/places?query=${search.query.toLowerCase()}&location=${search.location.toLowerCase()}`,
+    `${ROOT}/places?query=${search.query
+      .toLowerCase()
+      .replace(' ', '+')}&location=${search.location
+      .toLowerCase()
+      .replace(' ', '+')}`,
   );
 
   return dispatch => {
@@ -24,7 +28,7 @@ export const fetchResults = (search, history) => {
 
     fetchResultsAPICall
       .then(({ data }) => {
-        dispatch({ type: FETCH_RESULTS_SUCCESS, payload: data });
+        dispatch({ type: FETCH_RESULTS_SUCCESS, payload: data.data });
         dispatch({ type: FETCH_RESULTS_FINISH });
         history.push('/results');
       })

@@ -22,10 +22,12 @@ class Results extends Component {
   }
 
   renderAddress = _ => {
-    return this.state.geocode[0].address_components[2].long_name.toLowerCase();
+    return this.state.geocode[0].results[0].address_components[0].long_name;
+    // return this.state.geocode[0].address_components[2].long_name.toLowerCase();
   };
 
   render() {
+    console.log(this.props.geocode);
     return (
       <div className="Results">
         <Header />
