@@ -1,6 +1,11 @@
 const router = require('express').Router();
 
 /**
+ * cache
+ */
+const cache = require('../cache');
+
+/**
  * checker
  */
 const check = require('../utils/check');
@@ -28,7 +33,11 @@ router
   .route(`/`)
 
   /**
+   * GET /api/places
+   *
    * fetch places
+   *
+   * stringify before writing to cache
    *
    * req.query.location is required,
    * req.query.query is optional
@@ -43,7 +52,11 @@ router
     check.cache,
     fetch.geocode,
     combine.places,
-    (req, res) => send(res, req.places),
+    (req, res) => {
+      cache.write(JSON.stringify(req.query), req.places);
+
+      send(res, req.places);
+    },
   );
 
 /**

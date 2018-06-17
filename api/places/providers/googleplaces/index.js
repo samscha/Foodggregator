@@ -8,8 +8,9 @@ const fetch = require('../../fetch');
  */
 const { details } = require('./utils');
 
-
-const { uris, output, key } = JSON.parse(process.env.GOOGLEPLACES);
+const { uris, output, searchRadius, key } = JSON.parse(
+  process.env.GOOGLEPLACES,
+);
 
 /**
  * https://developers.google.com/places/web-service/search
@@ -24,13 +25,19 @@ const { uris, output, key } = JSON.parse(process.env.GOOGLEPLACES);
  * `details` is a `Promise.all`, so just write the .exec code in this function
  * and resolve or reject the result of `details`
  *
+ * note:
+ * - `searchRadius` is in meters (default set to 40,000n = ~25mi)
+ *
  * @param {Object} geometry - latitude (lat) and longitude (lng) of query
  * @param {string} query - query from user (optional)
  */
 exports.search = (geometry, query = 'food') => {
-  const uri = `${uris.nearbysearch}/${output}?key=${key}&location=${
+  const uri = `${uris.textsearch}/${output}?key=${key}&location=${
     geometry.lat
-  },${geometry.lng}&radius=50&type=restaurant&keyword=${query}`;
+  },${geometry.lng}&radius=${searchRadius}&type=restaurant&query=${query}`;
+  // keyword=${
+  //   query.includes('food') ? query : query + ' food'
+  // }`;
 
   return new Promise((resolve, reject) => {
     fetch(uri, undefined, (err, json) => {
@@ -38,7 +45,7 @@ exports.search = (geometry, query = 'food') => {
       if (json.error_message) reject(json.error_message);
 
       details(json.results)
-        .then(values => resolve(values))
+        .then(values => resolve({ places: values, key: 'googleplaces' }))
         .catch(reason => reject(reason));
     });
   });

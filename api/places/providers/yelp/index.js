@@ -24,7 +24,16 @@ exports.search = (geometry, query) => {
     fetch(uri, options, (err, json) => {
       if (err) reject(err);
 
-      resolve(json.businesses);
+      resolve({
+        places: json.businesses.map(business => {
+          return {
+            ...business,
+            intlPhone: business.phone,
+            phone: undefined,
+          };
+        }),
+        key: 'yelp',
+      });
     });
   });
 };

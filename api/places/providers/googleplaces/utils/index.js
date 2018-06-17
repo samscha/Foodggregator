@@ -23,7 +23,9 @@ exports.details = places => {
 
           resolve({
             ...place,
-            international_phone_number: json.result.international_phone_number,
+            intlPhone: json.result.international_phone_number,
+            address: json.result.formatted_address,
+            formatted_address: undefined,
           });
         });
       });
@@ -41,5 +43,5 @@ exports.details = places => {
 const detailsUriCreator = placeId => {
   return `${
     uris.details
-  }/${output}?key=${key}&placeid=${placeId}&fields=${fields}`;
+  }/${output}?key=${key}&placeid=${placeId}&fields=${fields.join(',')}`;
 };
