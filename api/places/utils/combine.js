@@ -96,7 +96,6 @@ const combine = (provider, places) => {
     );
 
     if (matchPhoneIndex !== -1) {
-      console.log('phone match');
       places[matchPhoneIndex][provider.key] = place;
       return;
     }
@@ -106,7 +105,6 @@ const combine = (provider, places) => {
     );
 
     if (matchAddressIndex !== -1) {
-      console.log('address match');
       places[matchAddressIndex] = {
         ...places[matchAddressIndex],
         [provider.key]: place,
@@ -114,7 +112,6 @@ const combine = (provider, places) => {
       return;
     }
 
-    console.log('no match');
     places.push({
       id: place.id,
       name: place.name,
