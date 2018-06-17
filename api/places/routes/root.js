@@ -53,9 +53,11 @@ router
     fetch.geocode,
     combine.places,
     (req, res) => {
-      cache.write(JSON.stringify(req.query), req.places);
+      const results = [req.geocode].concat(req.places);
 
-      send(res, [req.geocode].concat(req.places));
+      cache.write(JSON.stringify(req.query), results);
+
+      send(res, results);
     },
   );
 

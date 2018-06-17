@@ -37,7 +37,6 @@ const Result = props => {
           >
             <div
               className="ResultSource__googleplace"
-              // href={place.googleplaces.}
               style={
                 place.googleplaces === undefined
                   ? { opacity: '0.2', cursor: 'not-allowed' }
