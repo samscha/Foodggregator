@@ -45,7 +45,8 @@ class Results extends Component {
           </div>
 
           <div className="ResultsSearch__location">
-            {this.state.geocode.length === 1 ? this.renderAddress() : null}
+            {/* {this.state.geocode.length === 1 ? this.renderAddress() : null} */}
+            {this.state.search.location ? this.state.search.location : null}
           </div>
         </div>
 
