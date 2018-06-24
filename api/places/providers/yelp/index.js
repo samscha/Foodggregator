@@ -30,6 +30,11 @@ exports.search = (geometry, query) => {
             ...business,
             intlPhone: business.phone,
             phone: undefined,
+            coordinates: {
+              // ...business.coordinates,
+              lat: business.coordinates.latitude,
+              lng: business.coordinates.longitude,
+            },
           };
         }),
         key: 'yelp',
