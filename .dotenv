@@ -1,4 +1,4 @@
-# this is an example .env file, feel free to delete this line after entering you api keys
+# this is an example .env file for development, feel free to delete this line after entering you api keys and changing this file to .env
 CORS=["http://localhost:3000"]
 DEBUG=true
 DEV=true
