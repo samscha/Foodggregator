@@ -1,4 +1,4 @@
-const send = require('.');
+const send = require('../../utils');
 
 exports.search = (req, res, next) => {
   if (!req.query.location) {
