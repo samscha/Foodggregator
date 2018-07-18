@@ -1,4 +1,4 @@
-A POC for food aggregator app.
+A POC for food aggregator app ([link](https://foodggregator.herokuapp.com/)).
 
 ## Getting Started (dev)
 
